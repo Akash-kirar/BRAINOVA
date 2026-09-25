@@ -10,7 +10,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: VITE_SUPABASE_URL
-        value: https://erejgwkyxibliiusbekl.supabase.co
+        sync: false
       - key: VITE_SUPABASE_PUBLISHABLE_KEY
         sync: false
       - key: GEMINI_API_KEY
