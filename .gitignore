@@ -6,6 +6,13 @@ coverage/
 *.log
 *.err
 .env*
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+*.pem
+*.key
 !.env.example
 .agents/
 .qodo/
