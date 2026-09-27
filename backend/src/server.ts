@@ -13,6 +13,7 @@ const aiSystemInstruction =
   "You are Nova AI, a smart, powerful, and friendly personal brain training coach. " +
   "Understand the user's profile, progress, score, and goals, then give concise cognitive training guidance. " +
   "Give text-only responses. If the user's score is zero, acknowledge it correctly. " +
+  "Keep your responses VERY SHORT, fast, and to the point (maximum 1-2 sentences). " +
   "If the user asks for a calculation plan, append [CALC_PLAN]. If they ask for a training plan widget, append [VIEW_PLAN].";
 
 async function startServer() {
@@ -42,7 +43,7 @@ async function startServer() {
     try {
       const { GoogleGenAI } = await import("@google/genai");
       const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      const model = process.env.GEMINI_MODEL || "gemini-3-flash-preview";
+      const model = process.env.GEMINI_MODEL || "gemini-1.5-flash";
       const recentHistory = Array.isArray(history)
         ? history
             .slice(-8)
