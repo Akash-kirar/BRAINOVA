@@ -150,7 +150,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ language, onLogin, onBac
 
   return (
     <div className="flex flex-col h-[100dvh] bg-[#0a0a0c] font-sans text-white relative overflow-hidden">
-      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-indigo-500/20 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-sky-500/20 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-purple-500/20 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="flex-1 flex flex-col px-8 pt-12 pb-12 overflow-y-auto hide-scrollbar relative z-10 w-full max-w-md mx-auto justify-center">
@@ -164,8 +164,8 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ language, onLogin, onBac
               transition={{ duration: 0.3 }}
               className="flex flex-col items-center"
             >
-              <div className="w-20 h-20 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(99,102,241,0.2)]">
-                <Brain className="w-10 h-10 text-indigo-400" />
+              <div className="w-20 h-20 rounded-full bg-sky-500/10 border border-sky-500/20 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(14,165,233,0.2)]">
+                <Brain className="w-10 h-10 text-sky-400" />
               </div>
 
               <h2 className="text-3xl font-bold mb-2 tracking-tight text-center">{t('welcomeBack', language) || 'Welcome Back'}</h2>
@@ -173,29 +173,29 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ language, onLogin, onBac
 
               <div className="space-y-4 mb-6 w-full">
                 <div className="relative group">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 group-focus-within:text-indigo-400 transition-colors" />
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 group-focus-within:text-sky-400 transition-colors" />
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t('emailAddress', language) || 'Email address'}
-                    className="w-full bg-[#1a1a1c] border border-white/5 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-white/30 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all text-[15px]"
+                    className="w-full bg-[#1a1a1c] border border-white/5 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-white/30 focus:outline-none focus:border-sky-500/50 focus:ring-1 focus:ring-sky-500/50 transition-all text-[15px]"
                   />
                 </div>
                 <div className="relative group">
-                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 group-focus-within:text-indigo-400 transition-colors" />
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 group-focus-within:text-sky-400 transition-colors" />
                   <input
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder={t('password', language) || 'Password'}
-                    className="w-full bg-[#1a1a1c] border border-white/5 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-white/30 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all text-[15px]"
+                    className="w-full bg-[#1a1a1c] border border-white/5 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-white/30 focus:outline-none focus:border-sky-500/50 focus:ring-1 focus:ring-sky-500/50 transition-all text-[15px]"
                   />
                 </div>
               </div>
 
               <div className="flex justify-end mb-8 w-full">
-                <button className="text-[13px] font-medium text-indigo-400 hover:text-indigo-300 transition-colors">
+                <button className="text-[13px] font-medium text-sky-400 hover:text-sky-300 transition-colors">
                   {t('forgotPassword', language) || 'Forgot password?'}
                 </button>
               </div>
@@ -209,7 +209,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ language, onLogin, onBac
               <button
                 onClick={handleEmailLogin}
                 disabled={loading}
-                className="w-full h-14 rounded-2xl bg-indigo-500 text-white font-bold text-lg hover:bg-indigo-600 hover:scale-[0.98] active:scale-95 transition-all shadow-[0_0_20px_rgba(99,102,241,0.3)] disabled:opacity-50 mb-8"
+                className="w-full h-14 rounded-2xl bg-sky-500 text-white font-bold text-lg hover:bg-sky-600 hover:scale-[0.98] active:scale-95 transition-all shadow-[0_0_20px_rgba(14,165,233,0.3)] disabled:opacity-50 mb-8"
               >
                 {loading ? 'Loading...' : (t('logIn', language) || 'Log In')}
               </button>
@@ -232,7 +232,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ language, onLogin, onBac
 
               <div className="text-[15px] text-white/60">
                 Don't have an account?{' '}
-                <button onClick={() => setAuthMode('signup')} className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors">
+                <button onClick={() => setAuthMode('signup')} className="text-sky-400 hover:text-sky-300 font-medium transition-colors">
                   Sign up
                 </button>
               </div>
@@ -248,8 +248,8 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ language, onLogin, onBac
               transition={{ duration: 0.3 }}
               className="flex flex-col items-center"
             >
-              <div className="w-20 h-20 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(99,102,241,0.2)]">
-                <Brain className="w-10 h-10 text-indigo-400" />
+              <div className="w-20 h-20 rounded-full bg-sky-500/10 border border-sky-500/20 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(14,165,233,0.2)]">
+                <Brain className="w-10 h-10 text-sky-400" />
               </div>
 
               <h2 className="text-3xl font-bold mb-2 tracking-tight text-center">{t('createAccount', language) || 'Create Account'}</h2>
@@ -257,33 +257,33 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ language, onLogin, onBac
 
               <div className="space-y-4 mb-8 w-full">
                 <div className="relative group">
-                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 group-focus-within:text-indigo-400 transition-colors" />
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 group-focus-within:text-sky-400 transition-colors" />
                   <input
                     type="text"
                     value={signupName}
                     onChange={(e) => setSignupName(e.target.value)}
                     placeholder="Full Name"
-                    className="w-full bg-[#1a1a1c] border border-white/5 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-white/30 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all text-[15px]"
+                    className="w-full bg-[#1a1a1c] border border-white/5 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-white/30 focus:outline-none focus:border-sky-500/50 focus:ring-1 focus:ring-sky-500/50 transition-all text-[15px]"
                   />
                 </div>
                 <div className="relative group">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 group-focus-within:text-indigo-400 transition-colors" />
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 group-focus-within:text-sky-400 transition-colors" />
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t('emailAddress', language) || 'Email address'}
-                    className="w-full bg-[#1a1a1c] border border-white/5 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-white/30 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all text-[15px]"
+                    className="w-full bg-[#1a1a1c] border border-white/5 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-white/30 focus:outline-none focus:border-sky-500/50 focus:ring-1 focus:ring-sky-500/50 transition-all text-[15px]"
                   />
                 </div>
                 <div className="relative group">
-                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 group-focus-within:text-indigo-400 transition-colors" />
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 group-focus-within:text-sky-400 transition-colors" />
                   <input
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder={t('password', language) || 'Password'}
-                    className="w-full bg-[#1a1a1c] border border-white/5 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-white/30 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all text-[15px]"
+                    className="w-full bg-[#1a1a1c] border border-white/5 rounded-2xl py-4 pl-12 pr-4 text-white placeholder:text-white/30 focus:outline-none focus:border-sky-500/50 focus:ring-1 focus:ring-sky-500/50 transition-all text-[15px]"
                   />
                 </div>
               </div>
@@ -297,7 +297,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ language, onLogin, onBac
               <button
                 onClick={handleEmailSignup}
                 disabled={loading}
-                className="w-full h-14 rounded-2xl bg-indigo-500 text-white font-bold text-lg hover:bg-indigo-600 hover:scale-[0.98] active:scale-95 transition-all shadow-[0_0_20px_rgba(99,102,241,0.3)] disabled:opacity-50 mb-8"
+                className="w-full h-14 rounded-2xl bg-sky-500 text-white font-bold text-lg hover:bg-sky-600 hover:scale-[0.98] active:scale-95 transition-all shadow-[0_0_20px_rgba(14,165,233,0.3)] disabled:opacity-50 mb-8"
               >
                 {loading ? 'Loading...' : (t('signUp', language) || 'Sign up')}
               </button>
@@ -320,7 +320,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ language, onLogin, onBac
 
               <div className="text-[15px] text-white/60">
                 Already have an account?{' '}
-                <button onClick={() => setAuthMode('login')} className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors">
+                <button onClick={() => setAuthMode('login')} className="text-sky-400 hover:text-sky-300 font-medium transition-colors">
                   Log in
                 </button>
               </div>

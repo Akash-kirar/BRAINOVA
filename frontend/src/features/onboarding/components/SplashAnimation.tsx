@@ -31,11 +31,11 @@ export const SplashAnimation = ({ onComplete }: { onComplete: () => void }) => {
         transition={{ duration: 0.5 }}
         className="flex flex-col items-center mb-12"
       >
-        <div className="w-24 h-24 mb-6 text-[#bde85b] flex items-center justify-center">
+        <div className="w-24 h-24 mb-6 text-[#00a8ff] flex items-center justify-center">
           <Brain className="w-full h-full" strokeWidth={1.5} />
         </div>
         
-        <h1 className="text-3xl font-bold tracking-[0.2em] text-[#bde85b] ml-2">
+        <h1 className="text-3xl font-bold tracking-[0.2em] text-[#00a8ff] ml-2">
           BRAINOVA
         </h1>
       </motion.div>
@@ -47,7 +47,7 @@ export const SplashAnimation = ({ onComplete }: { onComplete: () => void }) => {
         </div>
         <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
           <motion.div 
-            className="h-full bg-[#bde85b] rounded-full"
+            className="h-full bg-[#00a8ff] rounded-full"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ ease: "linear", duration: 0.1 }}

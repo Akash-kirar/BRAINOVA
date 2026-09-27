@@ -12,6 +12,7 @@ create table if not exists public.profiles (
 create table if not exists public.user_stats (
   user_id uuid primary key references auth.users(id) on delete cascade,
   stats jsonb not null default '{}'::jsonb,
+  total_xp bigint not null default 0,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -190,6 +191,7 @@ with check (user_id is null);
 
 create index if not exists game_sessions_user_timestamp_idx on public.game_sessions (user_id, timestamp desc);
 create index if not exists user_feedback_user_created_idx on public.user_feedback (user_id, created_at desc);
+create index if not exists user_stats_total_xp_idx on public.user_stats (total_xp desc);
 
 -- Enable realtime updates for leaderboard (run once in Supabase SQL editor if not already added)
 do $$
@@ -227,6 +229,16 @@ from auth.users u
 left join public.user_stats us on us.user_id = u.id
 where us.user_id is null
 on conflict (user_id) do nothing;
+
+-- Backfill total_xp from stats->>'totalXp'
+update public.user_stats
+set total_xp = (
+  case 
+    when (stats->>'totalXp') ~ '^[0-9]+$' then (stats->>'totalXp')::bigint 
+    else 0 
+  end
+)
+where stats ? 'totalXp';
 
 -- Leaderboard RPC: returns every auth user with name + XP (bypasses RLS safely)
 create or replace function public.get_leaderboard()
