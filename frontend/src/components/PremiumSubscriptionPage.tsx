@@ -1,80 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { ChevronLeft, Crown, PlayCircle, TrendingUp, Calendar, BarChart2, Ban, Headphones, Star } from 'lucide-react';
+import { ChevronLeft, Check, Crown, PlayCircle, TrendingUp, Calendar, BarChart2, Ban, Headphones, Star } from 'lucide-react';
 import { getApiUrl } from '../lib/api';
 
 export default function PremiumSubscriptionPage({ onBack, onSkip, onSuccess }: { onBack: () => void; onSkip?: () => void; onSuccess?: () => void; }) {
   const [selectedPlan, setSelectedPlan] = useState<'monthly' | 'quarterly' | 'yearly'>('yearly');
+  const [showRequestPage, setShowRequestPage] = useState(false);
+  const [requestSubmitted, setRequestSubmitted] = useState(false);
 
   
-  const handlePayment = async () => {
-    // For demo purposes, allow instant unlock if no real razorpay keys are present
-    if (!import.meta.env.VITE_RAZORPAY_KEY_ID || import.meta.env.VITE_RAZORPAY_KEY_ID === 'dummy') {
-      localStorage.setItem("brainova_is_pro", "true");
-      alert("Payment successful! You are now a Premium member. (Demo Mode)");
-      onBack();
-      if (onSuccess) onSuccess();
-      return;
-    }
-
-    let amount = 1999;
-    if (selectedPlan === 'monthly') amount = 199;
-    if (selectedPlan === 'quarterly') amount = 99;
-
-    try {
-      const res = await fetch(getApiUrl('/api/razorpay/create-order'), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ amount, currency: 'INR' })
-      });
-      const order = await res.json();
-      if (!order.id) {
-        alert('Server error');
-        return;
-      }
-
-      const options = {
-        key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'dummy', 
-        amount: order.amount,
-        currency: order.currency,
-        name: "Brainova Premium",
-        description: selectedPlan + " subscription",
-        order_id: order.id,
-        handler: async function (response) {
-          try {
-            const verifyRes = await fetch(getApiUrl('/api/razorpay/verify-signature'), {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(response)
-            });
-            const verifyData = await verifyRes.json();
-            if (verifyData.msg === 'success') {
-              localStorage.setItem("brainova_is_pro", "true");
-              alert("Payment successful! You are now a Premium member.");
-              onBack();
-              if (onSuccess) onSuccess();
-            } else {
-              alert("Payment verification failed.");
-            }
-          } catch (e) {
-            console.error(e);
-            alert("Error verifying payment");
-          }
-        },
-        theme: {
-          color: "#8b5cf6"
-        }
-      };
-      
-      const rzp1 = new (window as any).Razorpay(options);
-      rzp1.open();
-    } catch (e) {
-      console.error(e);
-      alert('Could not initiate payment');
-    }
-  };
+  const handlePayment = () => { setShowRequestPage(true); };
 
   const features = [
     { text: 'Access to all 100+ Premium Games', icon: <PlayCircle className="w-[18px] h-[18px] text-[#f59e0b]" /> },
@@ -84,6 +19,47 @@ export default function PremiumSubscriptionPage({ onBack, onSkip, onSuccess }: {
     { text: 'Detailed progress reports', icon: <BarChart2 className="w-[18px] h-[18px] text-[#f59e0b]" /> },
     { text: 'Personalized Daily Workouts', icon: <Calendar className="w-[18px] h-[18px] text-[#f59e0b]" /> },
   ];
+
+  if (showRequestPage) {
+    return (
+      <div className="fixed inset-0 bg-[#0a0a0c] z-50 flex flex-col items-center justify-center p-6 text-white text-center">
+        {!requestSubmitted ? (
+          <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="max-w-md w-full bg-[#121215] rounded-3xl p-8 border border-white/5 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-violet-500 to-fuchsia-500"></div>
+            <Crown className="w-16 h-16 text-[#f59e0b] mx-auto mb-6" />
+            <h2 className="text-2xl font-bold mb-4">Request Premium Access</h2>
+            <p className="text-white/60 mb-8 leading-relaxed">
+              Submit a request to become a premium member. We will review your profile and activate your premium features within 24 hours.
+            </p>
+            <div className="flex flex-col gap-3">
+              <button onClick={() => {
+                  setRequestSubmitted(true);
+                  setTimeout(() => {
+                    localStorage.setItem("brainova_is_pro", "true");
+                    onBack();
+                    if (onSuccess) onSuccess();
+                  }, 2500);
+                }} 
+                className="w-full bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 text-white font-bold py-4 rounded-xl text-[16px] hover:opacity-90 transition-opacity">
+                Submit Request
+              </button>
+              <button onClick={() => setShowRequestPage(false)} className="w-full py-4 text-white/50 font-semibold hover:text-white transition-colors">
+                Cancel
+              </button>
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="max-w-md w-full bg-[#121215] rounded-3xl p-8 border border-[#10b981]/20 shadow-2xl flex flex-col items-center justify-center min-h-[300px]">
+            <div className="w-20 h-20 bg-[#10b981]/10 rounded-full flex items-center justify-center mb-6 border-[2px] border-[#10b981]">
+               <Check className="w-10 h-10 text-[#10b981]" />
+            </div>
+            <h2 className="text-2xl font-bold mb-2">Request Sent!</h2>
+            <p className="text-[#10b981] font-medium">You will be upgraded shortly.</p>
+          </motion.div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col h-[100dvh] bg-[#0c0914] font-sans text-white relative z-50 overflow-hidden">
@@ -197,3 +173,4 @@ export default function PremiumSubscriptionPage({ onBack, onSkip, onSuccess }: {
     </div>
   );
 }
+

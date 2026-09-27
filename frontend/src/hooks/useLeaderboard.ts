@@ -22,9 +22,9 @@ function getDisplayName(name: string | null, email: string | null, id: string): 
   return `Player ${id.slice(0, 6)}`;
 }
 
-export function getLeaderboardAvatar(avatarUrl: string | null, id: string): string {
+export function getLeaderboardAvatar(avatarUrl: string | null, id: string): string | null {
   if (avatarUrl?.trim()) return avatarUrl.trim();
-  return `https://i.pravatar.cc/150?u=${id}`;
+  return null;
 }
 
 function mapRows(rows: LeaderboardRow[]): LeaderboardEntry[] {

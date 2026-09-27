@@ -90,9 +90,15 @@ export default function LeaderboardPage({ onBack, profileName, entries, loading,
           <div className="flex flex-col items-center flex-1">
             {!rank2.isEmpty && (
               <div
-                className={`w-16 h-16 rounded-full border-2 ${rank2.isCurrentUser ? 'border-[#10b981]' : 'border-slate-300'} mb-2 relative`}
+                className={`w-16 h-16 rounded-full border-2 ${rank2.isCurrentUser ? 'border-[#10b981]' : 'border-slate-300'} mb-2 relative overflow-hidden`}
               >
-                <img src={rank2.image} alt={rank2.name} className="w-full h-full rounded-full object-cover" />
+                {rank2.image ? (
+                  <img src={rank2.image} alt={rank2.name} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full bg-[#1e293b] flex items-center justify-center text-white/70 font-bold text-xl uppercase">
+                    {rank2.name.charAt(0)}
+                  </div>
+                )}
               </div>
             )}
             <div className="bg-gradient-to-b from-slate-700 to-[#121217] w-full rounded-t-2xl flex flex-col items-center pt-4 pb-8 h-[140px] border border-white/5">
@@ -117,9 +123,15 @@ export default function LeaderboardPage({ onBack, profileName, entries, loading,
             {!rank1.isEmpty && <Crown className="w-8 h-8 text-[#f59e0b] mb-1 fill-[#f59e0b]" />}
             {!rank1.isEmpty && (
               <div
-                className={`w-20 h-20 rounded-full border-4 ${rank1.isCurrentUser ? 'border-[#10b981]' : 'border-[#f59e0b]'} mb-2 relative`}
+                className={`w-20 h-20 rounded-full border-4 ${rank1.isCurrentUser ? 'border-[#10b981]' : 'border-[#f59e0b]'} mb-2 relative overflow-hidden`}
               >
-                <img src={rank1.image} alt={rank1.name} className="w-full h-full rounded-full object-cover" />
+                {rank1.image ? (
+                  <img src={rank1.image} alt={rank1.name} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full bg-[#1e293b] flex items-center justify-center text-white/70 font-bold text-3xl uppercase">
+                    {rank1.name.charAt(0)}
+                  </div>
+                )}
               </div>
             )}
             <div className="bg-gradient-to-b from-yellow-700/80 to-[#121217] w-full rounded-t-2xl flex flex-col items-center justify-start pt-6 pb-12 h-[180px] shadow-[0_0_30px_rgba(245,158,11,0.15)] border border-yellow-500/20">
@@ -141,9 +153,15 @@ export default function LeaderboardPage({ onBack, profileName, entries, loading,
           <div className="flex flex-col items-center flex-1">
             {!rank3.isEmpty && (
               <div
-                className={`w-16 h-16 rounded-full border-2 ${rank3.isCurrentUser ? 'border-[#10b981]' : 'border-orange-700'} mb-2 relative`}
+                className={`w-16 h-16 rounded-full border-2 ${rank3.isCurrentUser ? 'border-[#10b981]' : 'border-orange-700'} mb-2 relative overflow-hidden`}
               >
-                <img src={rank3.image} alt={rank3.name} className="w-full h-full rounded-full object-cover" />
+                {rank3.image ? (
+                  <img src={rank3.image} alt={rank3.name} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full bg-[#1e293b] flex items-center justify-center text-white/70 font-bold text-xl uppercase">
+                    {rank3.name.charAt(0)}
+                  </div>
+                )}
               </div>
             )}
             <div className="bg-gradient-to-b from-orange-900/60 to-[#121217] w-full rounded-t-2xl flex flex-col items-center pt-4 pb-8 h-[120px] border border-orange-500/10">
@@ -185,7 +203,13 @@ export default function LeaderboardPage({ onBack, profileName, entries, loading,
               <div
                 className={`w-10 h-10 rounded-full border-2 ${user.isCurrentUser ? 'border-[#10b981]' : 'border-white/10'} overflow-hidden shrink-0`}
               >
-                <img src={user.image} alt={user.name} className="w-full h-full object-cover" />
+                {user.image ? (
+                  <img src={user.image} alt={user.name} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full bg-[#1e293b] flex items-center justify-center text-white/70 font-bold text-lg uppercase">
+                    {user.name.charAt(0)}
+                  </div>
+                )}
               </div>
               <div className={`flex-1 font-bold ${user.isCurrentUser ? 'text-[#10b981]' : 'text-white'}`}>
                 {user.name}

@@ -43,7 +43,7 @@ async function startServer() {
     try {
       const { GoogleGenAI } = await import("@google/genai");
       const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      const model = process.env.GEMINI_MODEL || "gemini-1.5-flash";
+      const model = process.env.GEMINI_MODEL || "gemini-2.0-flash";
       const recentHistory = Array.isArray(history)
         ? history
             .slice(-8)
@@ -63,6 +63,7 @@ async function startServer() {
         contents: prompt,
         config: {
           systemInstruction: aiSystemInstruction,
+          maxOutputTokens: 80,
         },
       });
 
@@ -148,3 +149,6 @@ async function startServer() {
 }
 
 startServer();
+
+
+

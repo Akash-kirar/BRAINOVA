@@ -8,11 +8,54 @@ interface TodaysMissionProps {
 }
 
 export default function TodaysMission({ onPlay, onBack, sessions = [] }: TodaysMissionProps) {
-  const missions = [
-    { id: 'm1', gameId: 'memory-grid', gameType: 'memory', name: 'Memory Grid', duration: '5 min', icon: <Grid className="w-5 h-5 text-[#3b82f6]" />, iconBg: 'bg-[#1e293b]' },
-    { id: 'm2', gameId: 'math-drill', gameType: 'math', name: 'Speed Math', duration: '3 min', icon: <Sparkles className="w-5 h-5 text-[#ec4899]" />, iconBg: 'bg-[#311b2b]' },
-    { id: 'm3', gameId: 'smart-game', gameType: 'logic', name: 'Pattern Logic', duration: '4 min', icon: <Puzzle className="w-5 h-5 text-[#a855f7]" />, iconBg: 'bg-[#2a1b3d]' }
+  const dayOfWeek = new Date().getDay();
+
+  const missionSets = [
+    // Sunday
+    [
+      { id: 'm1', gameId: 'memory-grid', gameType: 'memory', name: 'Memory Grid', duration: '5 min', icon: <Grid className="w-5 h-5 text-[#3b82f6]" />, iconBg: 'bg-[#1e293b]' },
+      { id: 'm2', gameId: 'math-drill', gameType: 'math', name: 'Speed Math', duration: '3 min', icon: <Sparkles className="w-5 h-5 text-[#ec4899]" />, iconBg: 'bg-[#311b2b]' },
+      { id: 'm3', gameId: 'pattern-logic', gameType: 'logic', name: 'Pattern Logic', duration: '4 min', icon: <Puzzle className="w-5 h-5 text-[#a855f7]" />, iconBg: 'bg-[#2a1b3d]' }
+    ],
+    // Monday
+    [
+      { id: 'm1', gameId: 'card-match', gameType: 'memory', name: 'Card Match', duration: '4 min', icon: <Grid className="w-5 h-5 text-[#3b82f6]" />, iconBg: 'bg-[#1e293b]' },
+      { id: 'm2', gameId: 'quick-addition', gameType: 'math', name: 'Quick Addition', duration: '3 min', icon: <Sparkles className="w-5 h-5 text-[#ec4899]" />, iconBg: 'bg-[#311b2b]' },
+      { id: 'm3', gameId: 'sequence-logic', gameType: 'logic', name: 'Sequence Logic', duration: '5 min', icon: <Puzzle className="w-5 h-5 text-[#a855f7]" />, iconBg: 'bg-[#2a1b3d]' }
+    ],
+    // Tuesday
+    [
+      { id: 'm1', gameId: 'sequence-recall', gameType: 'memory', name: 'Sequence Recall', duration: '5 min', icon: <Grid className="w-5 h-5 text-[#3b82f6]" />, iconBg: 'bg-[#1e293b]' },
+      { id: 'm2', gameId: 'fast-subtraction', gameType: 'math', name: 'Fast Subtraction', duration: '3 min', icon: <Sparkles className="w-5 h-5 text-[#ec4899]" />, iconBg: 'bg-[#311b2b]' },
+      { id: 'm3', gameId: 'smart-grid', gameType: 'logic', name: 'Smart Grid', duration: '4 min', icon: <Puzzle className="w-5 h-5 text-[#a855f7]" />, iconBg: 'bg-[#2a1b3d]' }
+    ],
+    // Wednesday
+    [
+      { id: 'm1', gameId: 'pattern-recall', gameType: 'memory', name: 'Pattern Recall', duration: '4 min', icon: <Grid className="w-5 h-5 text-[#3b82f6]" />, iconBg: 'bg-[#1e293b]' },
+      { id: 'm2', gameId: 'mental-math', gameType: 'math', name: 'Mental Math', duration: '4 min', icon: <Sparkles className="w-5 h-5 text-[#ec4899]" />, iconBg: 'bg-[#311b2b]' },
+      { id: 'm3', gameId: 'cube-rotation', gameType: 'logic', name: 'Cube Rotation', duration: '5 min', icon: <Puzzle className="w-5 h-5 text-[#a855f7]" />, iconBg: 'bg-[#2a1b3d]' }
+    ],
+    // Thursday
+    [
+      { id: 'm1', gameId: 'image-memory', gameType: 'memory', name: 'Image Memory', duration: '5 min', icon: <Grid className="w-5 h-5 text-[#3b82f6]" />, iconBg: 'bg-[#1e293b]' },
+      { id: 'm2', gameId: 'division-master', gameType: 'math', name: 'Division Master', duration: '3 min', icon: <Sparkles className="w-5 h-5 text-[#ec4899]" />, iconBg: 'bg-[#311b2b]' },
+      { id: 'm3', gameId: 'puzzle-match', gameType: 'logic', name: 'Puzzle Match', duration: '4 min', icon: <Puzzle className="w-5 h-5 text-[#a855f7]" />, iconBg: 'bg-[#2a1b3d]' }
+    ],
+    // Friday
+    [
+      { id: 'm1', gameId: 'color-memory', gameType: 'memory', name: 'Color Memory', duration: '4 min', icon: <Grid className="w-5 h-5 text-[#3b82f6]" />, iconBg: 'bg-[#1e293b]' },
+      { id: 'm2', gameId: 'equation-builder', gameType: 'math', name: 'Equation Builder', duration: '5 min', icon: <Sparkles className="w-5 h-5 text-[#ec4899]" />, iconBg: 'bg-[#311b2b]' },
+      { id: 'm3', gameId: 'hidden-pattern', gameType: 'logic', name: 'Hidden Pattern', duration: '5 min', icon: <Puzzle className="w-5 h-5 text-[#a855f7]" />, iconBg: 'bg-[#2a1b3d]' }
+    ],
+    // Saturday
+    [
+      { id: 'm1', gameId: 'memory-sprint', gameType: 'memory', name: 'Memory Sprint', duration: '3 min', icon: <Grid className="w-5 h-5 text-[#3b82f6]" />, iconBg: 'bg-[#1e293b]' },
+      { id: 'm2', gameId: 'multiplication-sprint', gameType: 'math', name: 'Multiplication Sprint', duration: '3 min', icon: <Sparkles className="w-5 h-5 text-[#ec4899]" />, iconBg: 'bg-[#311b2b]' },
+      { id: 'm3', gameId: 'pattern-logic', gameType: 'logic', name: 'Pattern Logic', duration: '4 min', icon: <Puzzle className="w-5 h-5 text-[#a855f7]" />, iconBg: 'bg-[#2a1b3d]' }
+    ]
   ];
+
+  const missions = missionSets[dayOfWeek];
 
   // Get today's start timestamp
   const today = new Date();

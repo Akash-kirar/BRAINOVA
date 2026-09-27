@@ -142,62 +142,61 @@ const games = [
   { id: 'pattern-recall', title: "Pattern Recall", category: "Memory", icon: <Zap className="w-5 h-5 text-amber-400" />, color: "bg-amber-500/10" },
 ];
 
-const allGames = [
+export const allGames = [
   { id: 'memory-grid', title: 'Memory Grid', category: 'Memory', description: 'Remember highlighted squares', icon: <Brain className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
   { id: 'card-match', title: 'Card Match', category: 'Memory', description: 'Match identical cards', icon: <Sparkles className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
   { id: 'sequence-recall', title: 'Sequence Recall', category: 'Memory', description: 'Remember number sequence', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20', isPremium: true },
   { id: 'pattern-recall', title: 'Pattern Recall', category: 'Memory', description: 'Remember shapes pattern', icon: <Zap className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20', isPremium: true },
-  { id: 'image-memory', title: 'Image Memory', category: 'Memory', description: 'Remember pictures', icon: <Lightbulb className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
-  { id: 'color-memory', title: 'Color Memory', category: 'Memory', description: 'Remember color order', icon: <Brain className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+  { id: 'image-memory', title: 'Image Memory', category: 'Memory', description: 'Remember pictures', icon: <Lightbulb className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
+  { id: 'color-memory', title: 'Color Memory', category: 'Memory', description: 'Remember color order', icon: <Brain className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20', isPremium: true },
   { id: 'number-recall', title: 'Number Recall', category: 'Memory', description: 'Remember numbers quickly', icon: <Calculator className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
-  { id: 'word-recall', title: 'Word Recall', category: 'Memory', description: 'Remember word list', icon: <Sparkles className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20' },
-  { id: 'flash-memory', title: 'Flash Memory', category: 'Memory', description: 'Memorize items in seconds', icon: <Zap className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
+  { id: 'word-recall', title: 'Word Recall', category: 'Memory', description: 'Remember word list', icon: <Sparkles className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20', isPremium: true },
+  { id: 'flash-memory', title: 'Flash Memory', category: 'Memory', description: 'Memorize items in seconds', icon: <Zap className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20', isPremium: true },
   { id: 'object-position', title: 'Object Position', category: 'Memory', description: 'Remember object positions', icon: <Target className="w-8 h-8 text-green-400" />, color: 'bg-green-500/10', border: 'border-green-500/20' },
-  { id: 'sound-memory', title: 'Sound Memory', category: 'Memory', description: 'Remember sound order', icon: <Activity className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
+  { id: 'sound-memory', title: 'Sound Memory', category: 'Memory', description: 'Remember sound order', icon: <Activity className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20', isPremium: true },
   { id: 'memory-path', title: 'Memory Path', category: 'Memory', description: 'Remember a path on grid', icon: <Brain className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
   { id: 'memory-tiles', title: 'Memory Tiles', category: 'Memory', description: 'Tap tiles in correct order', icon: <Sparkles className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
   { id: 'symbol-match', title: 'Symbol Match', category: 'Memory', description: 'Match symbol pairs', icon: <Lightbulb className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
   { id: 'memory-matrix', title: 'Memory Matrix', category: 'Memory', description: 'Remember large grid pattern', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
-  { id: 'fast-recall', title: 'Fast Recall', category: 'Memory', description: 'Quick memory test', icon: <Zap className="w-8 h-8 text-orange-400" />, color: 'bg-orange-500/10', border: 'border-orange-500/20' },
+  { id: 'fast-recall', title: 'Fast Recall', category: 'Memory', description: 'Quick memory test', icon: <Zap className="w-8 h-8 text-orange-400" />, color: 'bg-orange-500/10', border: 'border-orange-500/20', isPremium: true },
   { id: 'picture-recall', title: 'Picture Recall', category: 'Memory', description: 'Remember picture details', icon: <Brain className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
   { id: 'number-pattern', title: 'Number Pattern Memory', category: 'Memory', description: 'Remember number patterns', icon: <Calculator className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
   { id: 'memory-flip', title: 'Memory Flip Challenge', category: 'Memory', description: 'Flip and remember', icon: <Sparkles className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20' },
-  { id: 'speed-memory', title: 'Speed Memory Challenge', category: 'Memory', description: 'Fast-paced memory', icon: <Zap className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
-  
+  { id: 'speed-memory', title: 'Speed Memory Challenge', category: 'Memory', description: 'Fast-paced memory', icon: <Zap className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20', isPremium: true },
   // Focus & Attention Games
   { id: 'find-different-shape', title: 'Find the Different Shape', category: 'Focus', description: 'Spot the unique shape', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
   { id: 'odd-one-out', title: 'Odd One Out', category: 'Focus', description: 'Find the odd item out', icon: <Lightbulb className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
   { id: 'focus-tap', title: 'Focus Tap', category: 'Focus', description: 'Tap target quickly', icon: <Zap className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
-  { id: 'moving-target-tap', title: 'Moving Target Tap', category: 'Focus', description: 'Tap moving targets', icon: <Activity className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
+  { id: 'moving-target-tap', title: 'Moving Target Tap', category: 'Focus', description: 'Tap moving targets', icon: <Activity className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20', isPremium: true },
   { id: 'color-match-focus', title: 'Color Match Focus', category: 'Focus', description: 'Match word and color', icon: <Brain className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
   { id: 'find-hidden-object', title: 'Find Hidden Object', category: 'Observation', description: 'Spot hidden items', icon: <Target className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
-  { id: 'distraction-filter', title: 'Distraction Filter', category: 'Focus', description: 'Ignore wrong objects', icon: <Sparkles className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20' },
+  { id: 'distraction-filter', title: 'Distraction Filter', category: 'Focus', description: 'Ignore wrong objects', icon: <Sparkles className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20', isPremium: true },
   { id: 'focus-circle', title: 'Focus Circle', category: 'Focus', description: 'Track moving circle', icon: <Activity className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
-  { id: 'visual-search', title: 'Visual Search', category: 'Observation', description: 'Search for specific items', icon: <Lightbulb className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
+  { id: 'visual-search', title: 'Visual Search', category: 'Observation', description: 'Search for specific items', icon: <Lightbulb className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20', isPremium: true },
   { id: 'target-finder', title: 'Target Finder', category: 'Focus', description: 'Find the specific target', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
   { id: 'focus-lines', title: 'Focus Lines', category: 'Focus', description: 'Follow correct path', icon: <Zap className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
   { id: 'quick-select', title: 'Quick Select', category: 'Focus', description: 'Select items quickly', icon: <Activity className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
   { id: 'spot-difference', title: 'Spot the Difference', category: 'Observation', description: 'Find differences in images', icon: <Brain className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
-  { id: 'multi-object-tracking', title: 'Multi Object Tracking', category: 'Focus', description: 'Track multiple objects', icon: <Target className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
+  { id: 'multi-object-tracking', title: 'Multi Object Tracking', category: 'Focus', description: 'Track multiple objects', icon: <Target className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20', isPremium: true },
   { id: 'attention-grid', title: 'Attention Grid', category: 'Focus', description: 'Focus on grid patterns', icon: <Sparkles className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
   
     { id: 'shadow-match', title: 'Shadow Match', category: 'Observation', description: 'Match item to shadow', icon: <Search className="w-8 h-8 text-violet-400" />, color: 'bg-violet-500/10', border: 'border-violet-500/20' },
   { id: 'find-identical', title: 'Find Identical', category: 'Observation', description: 'Find the exact match', icon: <Target className="w-8 h-8 text-fuchsia-400" />, color: 'bg-fuchsia-500/10', border: 'border-fuchsia-500/20' },
   { id: 'shape-count', title: 'Shape Count', category: 'Observation', description: 'Count specific shapes', icon: <Box className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
-  { id: 'color-anomaly', title: 'Color Anomaly', category: 'Observation', description: 'Spot the odd color', icon: <Sparkle className="w-8 h-8 text-sky-400" />, color: 'bg-sky-500/10', border: 'border-sky-500/20' },
+  { id: 'color-anomaly', title: 'Color Anomaly', category: 'Observation', description: 'Spot the odd color', icon: <Sparkle className="w-8 h-8 text-sky-400" />, color: 'bg-sky-500/10', border: 'border-sky-500/20', isPremium: true },
   // Logic & Puzzle Games
   { id: 'sudoku-lite', title: 'Sudoku Lite', category: 'Logic', description: 'Mini 4x4 Sudoku', icon: <Grid className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20', isPremium: true },
   { id: 'pattern-logic', title: 'Pattern Logic', category: 'Logic', description: 'Find the next pattern', icon: <Brain className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
   { id: 'sequence-logic', title: 'Sequence Logic', category: 'Logic', description: 'Find the next number', icon: <Calculator className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
-  { id: 'smart-grid', title: 'Smart Grid Puzzle', category: 'Logic', description: 'Turn off all lights', icon: <Lightbulb className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+  { id: 'smart-grid', title: 'Smart Grid Puzzle', category: 'Logic', description: 'Turn off all lights', icon: <Lightbulb className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20', isPremium: true },
   { id: 'cube-rotation', title: 'Cube Rotation Puzzle', category: 'Logic', description: 'Match the target grid', icon: <Box className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20', isPremium: true },
-  { id: 'puzzle-match', title: 'Puzzle Match', category: 'Logic', description: 'Match logical pairs', icon: <Puzzle className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+  { id: 'puzzle-match', title: 'Puzzle Match', category: 'Logic', description: 'Match logical pairs', icon: <Puzzle className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20', isPremium: true },
   { id: 'hidden-pattern', title: 'Hidden Pattern Puzzle', category: 'Logic', description: 'Find the missing piece', icon: <Search className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
   { id: 'block-puzzle', title: 'Block Puzzle', category: 'Logic', description: 'Fit blocks in grid', icon: <Cpu className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
   { id: 'shape-fit', title: 'Shape Fit Puzzle', category: 'Logic', description: 'Fit shapes together', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
   { id: 'number-puzzle', title: 'Number Puzzle', category: 'Logic', description: 'Solve number logic', icon: <Calculator className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
   { id: 'grid-logic', title: 'Grid Logic', category: 'Logic', description: 'Solve grid puzzles', icon: <Grid className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
-  { id: 'maze-solver', title: 'Maze Solver', category: 'Logic', description: 'Find the exit', icon: <Activity className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
+  { id: 'maze-solver', title: 'Maze Solver', category: 'Logic', description: 'Find the exit', icon: <Activity className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
   { id: 'rotate-puzzle', title: 'Rotate Puzzle', category: 'Logic', description: 'Rotate to solve', icon: <RotateCcw className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
   { id: 'pattern-builder', title: 'Pattern Builder', category: 'Logic', description: 'Build the pattern', icon: <Sparkles className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20' },
   { id: 'shape-logic', title: 'Shape Logic', category: 'Logic', description: 'Shape-based logic', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
@@ -210,35 +209,34 @@ const allGames = [
   // Math & Calculation Games
   { id: 'quick-addition', title: 'Quick Addition', category: 'Math', description: 'Fast addition problems', icon: <Calculator className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
   { id: 'fast-subtraction', title: 'Fast Subtraction', category: 'Math', description: 'Quick subtraction', icon: <Calculator className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
-  { id: 'multiplication-sprint', title: 'Multiplication Sprint', category: 'Math', description: 'Speed multiplication', icon: <Calculator className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+  { id: 'multiplication-sprint', title: 'Multiplication Sprint', category: 'Math', description: 'Speed multiplication', icon: <Calculator className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20', isPremium: true },
   { id: 'division-master', title: 'Division Master', category: 'Math', description: 'Master division', icon: <Calculator className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
   { id: 'number-comparison', title: 'Number Comparison', category: 'Math', description: 'Which is larger?', icon: <Calculator className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
-  { id: 'mental-math', title: 'Mental Math Challenge', category: 'Math', description: 'Mixed operations', icon: <Brain className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
-  { id: 'equation-builder', title: 'Equation Builder', category: 'Math', description: 'Build the target number', icon: <Calculator className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+  { id: 'mental-math', title: 'Mental Math Challenge', category: 'Math', description: 'Mixed operations', icon: <Brain className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20', isPremium: true },
+  { id: 'equation-builder', title: 'Equation Builder', category: 'Math', description: 'Build the target number', icon: <Calculator className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20', isPremium: true },
   { id: 'math-sequence', title: 'Math Sequence', category: 'Math', description: 'Find the missing number', icon: <Calculator className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20' },
   { id: 'speed-calculation', title: 'Speed Calculation', category: 'Math', description: 'Calculate quickly', icon: <Zap className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
   { id: 'missing-number', title: 'Missing Number', category: 'Math', description: 'Find the missing part', icon: <Search className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
   { id: 'math-grid', title: 'Math Grid', category: 'Math', description: 'Grid-based math', icon: <Grid className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
   { id: 'arithmetic-race', title: 'Arithmetic Race', category: 'Math', description: 'Race against time', icon: <Activity className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
   { id: 'calculation-memory', title: 'Calculation Memory', category: 'Math', description: 'Remember calculations', icon: <Brain className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
-  { id: 'math-duel', title: 'Math Duel', category: 'Math', description: 'Duel with math', icon: <Target className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
-
+  { id: 'math-duel', title: 'Math Duel', category: 'Math', description: 'Duel with math', icon: <Target className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20', isPremium: true },
   // Reaction Speed Games
-  { id: 'reaction-tap', title: 'Reaction Tap', category: 'Reaction Speed', description: 'Tap when green', icon: <Zap className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
-  { id: 'color-reaction', title: 'Color Reaction', category: 'Reaction Speed', description: 'Match color and word', icon: <Activity className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
+  { id: 'reaction-tap', title: 'Reaction Tap', category: 'Reaction Speed', description: 'Tap when green', icon: <Zap className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
+  { id: 'color-reaction', title: 'Color Reaction', category: 'Reaction Speed', description: 'Match color and word', icon: <Activity className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20', isPremium: true },
   { id: 'tap-the-target', title: 'Tap the Target', category: 'Reaction Speed', description: 'Tap targets quickly', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
   { id: 'fast-button', title: 'Fast Button', category: 'Reaction Speed', description: 'Tap as fast as possible', icon: <Zap className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
-  { id: 'reaction-light', title: 'Reaction Light', category: 'Reaction Speed', description: 'Traffic light reaction', icon: <Lightbulb className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+  { id: 'reaction-light', title: 'Reaction Light', category: 'Reaction Speed', description: 'Traffic light reaction', icon: <Lightbulb className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20', isPremium: true },
   { id: 'tap-when-green', title: 'Tap When Green', category: 'Reaction Speed', description: 'Wait for green', icon: <Target className="w-8 h-8 text-green-400" />, color: 'bg-green-500/10', border: 'border-green-500/20' },
   { id: 'speed-circle', title: 'Speed Circle', category: 'Reaction Speed', description: 'Tap shrinking circles', icon: <Activity className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
-  { id: 'quick-reflex', title: 'Quick Reflex', category: 'Reaction Speed', description: 'Test your reflexes', icon: <Zap className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20' },
+  { id: 'quick-reflex', title: 'Quick Reflex', category: 'Reaction Speed', description: 'Test your reflexes', icon: <Zap className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20', isPremium: true },
   { id: 'reaction-timer', title: 'Reaction Timer', category: 'Reaction Speed', description: 'Measure reaction time', icon: <Clock className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
   { id: 'tap-the-moving-dot', title: 'Tap the Moving Dot', category: 'Reaction Speed', description: 'Track and tap', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
-  { id: 'reflex-challenge', title: 'Reflex Challenge', category: 'Reaction Speed', description: 'Ultimate reflex test', icon: <Zap className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
-  { id: 'speed-match', title: 'Speed Match', category: 'Reaction Speed', description: 'Match quickly', icon: <Activity className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
+  { id: 'reflex-challenge', title: 'Reflex Challenge', category: 'Reaction Speed', description: 'Ultimate reflex test', icon: <Zap className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
+  { id: 'speed-match', title: 'Speed Match', category: 'Reaction Speed', description: 'Match quickly', icon: <Activity className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20', isPremium: true },
   { id: 'flash-tap', title: 'Flash Tap', category: 'Reaction Speed', description: 'Tap flashing items', icon: <Lightbulb className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
   { id: 'quick-click', title: 'Quick Click', category: 'Reaction Speed', description: 'Click as fast as you can', icon: <Target className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
-  { id: 'lightning-reaction', title: 'Lightning Reaction', category: 'Reaction Speed', description: 'Lightning fast taps', icon: <Zap className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
+  { id: 'lightning-reaction', title: 'Lightning Reaction', category: 'Reaction Speed', description: 'Lightning fast taps', icon: <Zap className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20', isPremium: true },
   { id: 'word-builder', title: 'Word Builder', category: 'Language & Vocabulary', description: 'Build words from letters', icon: <Type className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
   { id: 'word-scramble', title: 'Word Scramble', category: 'Language & Vocabulary', description: 'Unscramble the letters', icon: <Shuffle className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
   { id: 'vocabulary-match', title: 'Vocabulary Match', category: 'Language & Vocabulary', description: 'Match words to meanings', icon: <BookOpen className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
@@ -248,36 +246,36 @@ const allGames = [
   { id: 'missing-letter', title: 'Missing Letter', category: 'Language & Vocabulary', description: 'Fill in the blank', icon: <Type className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
   { id: 'word-puzzle', title: 'Word Puzzle', category: 'Language & Vocabulary', description: 'Solve word puzzles', icon: <Puzzle className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20' },
   { id: 'word-association', title: 'Word Association', category: 'Language & Vocabulary', description: 'Link related words', icon: <Link className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
-  { id: 'spelling-challenge', title: 'Spelling Challenge', category: 'Language & Vocabulary', description: 'Spell correctly', icon: <CheckCircle className="w-8 h-8 text-green-400" />, color: 'bg-green-500/10', border: 'border-green-500/20' },
-  { id: 'word-speed-test', title: 'Word Speed Test', category: 'Language & Vocabulary', description: 'Fast word recognition', icon: <Zap className="w-8 h-8 text-orange-400" />, color: 'bg-orange-500/10', border: 'border-orange-500/20' },
+  { id: 'spelling-challenge', title: 'Spelling Challenge', category: 'Language & Vocabulary', description: 'Spell correctly', icon: <CheckCircle className="w-8 h-8 text-green-400" />, color: 'bg-green-500/10', border: 'border-green-500/20', isPremium: true },
+  { id: 'word-speed-test', title: 'Word Speed Test', category: 'Language & Vocabulary', description: 'Fast word recognition', icon: <Zap className="w-8 h-8 text-orange-400" />, color: 'bg-orange-500/10', border: 'border-orange-500/20', isPremium: true },
   { id: 'letter-grid-search', title: 'Letter Grid Search', category: 'Language & Vocabulary', description: 'Search in grid', icon: <Grid className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
-  { id: 'synonym-match', title: 'Synonym Match', category: 'Language & Vocabulary', description: 'Match synonyms', icon: <Copy className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
+  { id: 'synonym-match', title: 'Synonym Match', category: 'Language & Vocabulary', description: 'Match synonyms', icon: <Copy className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20', isPremium: true },
   { id: 'word-pattern', title: 'Word Pattern', category: 'Language & Vocabulary', description: 'Find word patterns', icon: <Activity className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
-  { id: 'vocabulary-builder', title: 'Vocabulary Builder', category: 'Language & Vocabulary', description: 'Learn new words', icon: <BookOpen className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+  { id: 'vocabulary-builder', title: 'Vocabulary Builder', category: 'Language & Vocabulary', description: 'Learn new words', icon: <BookOpen className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20', isPremium: true },
   // Visual & Spatial Games
   { id: 'pattern-recognition', title: 'Pattern Recognition', category: 'Visual & Spatial', description: 'Identify visual patterns', icon: <Grid className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
-  { id: 'mental-rotation', title: 'Mental Rotation', category: 'Visual & Spatial', description: 'Rotate objects mentally', icon: <RotateCcw className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
-  { id: 'spatial-reasoning', title: 'Spatial Reasoning', category: 'Visual & Spatial', description: 'Solve spatial puzzles', icon: <Box className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+  { id: 'mental-rotation', title: 'Mental Rotation', category: 'Visual & Spatial', description: 'Rotate objects mentally', icon: <RotateCcw className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
+  { id: 'spatial-reasoning', title: 'Spatial Reasoning', category: 'Visual & Spatial', description: 'Solve spatial puzzles', icon: <Box className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20', isPremium: true },
   { id: 'symmetry-test', title: 'Symmetry Test', category: 'Visual & Spatial', description: 'Create mirror images', icon: <ScanFace className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
-  { id: 'block-count', title: 'Block Count', category: 'Visual & Spatial', description: 'Count 3D blocks', icon: <Cuboid className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
+  { id: 'block-count', title: 'Block Count', category: 'Visual & Spatial', description: 'Count 3D blocks', icon: <Cuboid className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20', isPremium: true },
   { id: 'perfect-path', title: 'Perfect Path', category: 'Visual & Spatial', description: 'Trace a path in grid', icon: <Route className="w-8 h-8 text-green-400" />, color: 'bg-green-500/10', border: 'border-green-500/20' },
-  { id: 'layer-logic', title: 'Layer Logic', category: 'Visual & Spatial', description: 'Combine overlapping layers', icon: <Layers className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
+  { id: 'layer-logic', title: 'Layer Logic', category: 'Visual & Spatial', description: 'Combine overlapping layers', icon: <Layers className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20', isPremium: true },
   // Executive Function
   { id: 'planning', title: 'Planning', category: 'Executive Function', description: 'Plan your route', icon: <Grid className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
-  { id: 'decision-making', title: 'Decision Making', category: 'Executive Function', description: 'Quick optimal choices', icon: <TrendingUp className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
-  { id: 'task-switching', title: 'Task Switching', category: 'Executive Function', description: 'Switch contexts quickly', icon: <Activity className="w-8 h-8 text-violet-400" />, color: 'bg-violet-500/10', border: 'border-violet-500/20' },
+  { id: 'decision-making', title: 'Decision Making', category: 'Executive Function', description: 'Quick optimal choices', icon: <TrendingUp className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
+  { id: 'task-switching', title: 'Task Switching', category: 'Executive Function', description: 'Switch contexts quickly', icon: <Activity className="w-8 h-8 text-violet-400" />, color: 'bg-violet-500/10', border: 'border-violet-500/20', isPremium: true },
   { id: 'rule-sorter', title: 'Rule Sorter', category: 'Executive Function', description: 'Sort by changing rules', icon: <Filter className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
-  { id: 'go-no-go', title: 'Impulse Control', category: 'Executive Function', description: 'Go or No-Go', icon: <Target className="w-8 h-8 text-red-400" />, color: 'bg-red-500/10', border: 'border-red-500/20' },
+  { id: 'go-no-go', title: 'Impulse Control', category: 'Executive Function', description: 'Go or No-Go', icon: <Target className="w-8 h-8 text-red-400" />, color: 'bg-red-500/10', border: 'border-red-500/20', isPremium: true },
   { id: 'sequence-planner', title: 'Sequence Planner', category: 'Executive Function', description: 'Alternate item types', icon: <ListOrdered className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
-  { id: 'memory-updater', title: 'Memory Updater', category: 'Executive Function', description: 'Update memory states', icon: <RefreshCcw className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
+  { id: 'memory-updater', title: 'Memory Updater', category: 'Executive Function', description: 'Update memory states', icon: <RefreshCcw className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20', isPremium: true },
   // Creativity
   { id: 'pattern-creation', title: 'Pattern Creation', category: 'Creativity', description: 'Design symmetries', icon: <Paintbrush className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20' },
-  { id: 'creative-thinking', title: 'Creative Thinking', category: 'Creativity', description: 'Alternative uses', icon: <Sparkles className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
-  { id: 'puzzle-design', title: 'Puzzle Design', category: 'Creativity', description: 'Design paths', icon: <Box className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+  { id: 'creative-thinking', title: 'Creative Thinking', category: 'Creativity', description: 'Alternative uses', icon: <Sparkles className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20', isPremium: true },
+  { id: 'puzzle-design', title: 'Puzzle Design', category: 'Creativity', description: 'Design paths', icon: <Box className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20', isPremium: true },
   { id: 'color-mixer', title: 'Color Mixer', category: 'Creativity', description: 'Mix colors precisely', icon: <Palette className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
   { id: 'emoji-story', title: 'Emoji Story', category: 'Creativity', description: 'Tell story via emoji', icon: <Smile className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
   { id: 'pixel-art', title: 'Pixel Art', category: 'Creativity', description: 'Draw pixel creations', icon: <Brush className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
-  { id: 'shape-builder', title: 'Shape Builder', category: 'Creativity', description: 'Combine basic shapes', icon: <Shapes className="w-8 h-8 text-green-400" />, color: 'bg-green-500/10', border: 'border-green-500/20' },
+  { id: 'shape-builder', title: 'Shape Builder', category: 'Creativity', description: 'Combine basic shapes', icon: <Shapes className="w-8 h-8 text-green-400" />, color: 'bg-green-500/10', border: 'border-green-500/20', isPremium: true },
 ];
 
 const gameCategories = [
@@ -376,6 +374,24 @@ export default function App() {
     setProfilePhoto(null);
   };
 
+  const handleDeleteAccount = async () => {
+    if (deleteConfirmationText.toLowerCase() === 'delete') {
+      setIsDeleteAccountPromptOpen(false);
+      setIsAccountOpen(false);
+      setDeleteConfirmationText('');
+      
+      // Attempt to clean up Supabase if possible. Usually needs an edge function or admin token.
+      if (supabase) {
+        const { data } = await supabase.auth.getSession();
+        if (data?.session?.user?.id) {
+           // A real app would call supabase.rpc('delete_user') here or similar
+        }
+      }
+      
+      await handleLogout();
+    }
+  };
+
   useEffect(() => {
     if (!supabase) {
       setAuthReady(true);
@@ -469,6 +485,8 @@ export default function App() {
   const [isMyInfoOpen, setIsMyInfoOpen] = useState(false);
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [isAddNewGamesOpen, setIsAddNewGamesOpen] = useState(false);
+  const [showLevelUpPopup, setShowLevelUpPopup] = useState(false);
+  const [leveledUpTo, setLeveledUpTo] = useState<any>(null);
   const [isModeModalOpen, setIsModeModalOpen] = useState(false);
   const [isXpRoadmapOpen, setIsXpRoadmapOpen] = useState(false);
   const [isQuestPageOpen, setIsQuestPageOpen] = useState(false);
@@ -497,6 +515,9 @@ export default function App() {
   const [mixedGames, setMixedGames] = useState<typeof allGames>([]);
   const [isProModalOpen, setIsProModalOpen] = useState(false);
   const [isRewardsHistoryOpen, setIsRewardsHistoryOpen] = useState(false);
+  const [isAccountOpen, setIsAccountOpen] = useState(false);
+  const [isDeleteAccountPromptOpen, setIsDeleteAccountPromptOpen] = useState(false);
+  const [deleteConfirmationText, setDeleteConfirmationText] = useState('');
   const [isSubscriptionModalOpen, setIsSubscriptionModalOpen] = useState(false);
   const [isLpiModalOpen, setIsLpiModalOpen] = useState(false);
   const [isPlanGeneratorOpen, setIsPlanGeneratorOpen] = useState(false);
@@ -860,6 +881,19 @@ export default function App() {
   }
 
   const levelProgress = Math.min(100, (totalXP / currentLevelData.maxXP) * 100);
+
+  useEffect(() => {
+    const lastSeenStr = localStorage.getItem('brainova_last_seen_level');
+    const lastSeenLevel = lastSeenStr ? parseInt(lastSeenStr, 10) : 1;
+    
+    if (currentLevelData.level > lastSeenLevel) {
+      setLeveledUpTo(currentLevelData);
+      setShowLevelUpPopup(true);
+      localStorage.setItem('brainova_last_seen_level', currentLevelData.level.toString());
+    } else if (!lastSeenStr) {
+      localStorage.setItem('brainova_last_seen_level', currentLevelData.level.toString());
+    }
+  }, [currentLevelData.level, currentLevelData]);
   
   const mapNodes = mapNodesBase.map((node, index) => {
     const requiredXP = parseInt(node.xp) || 0;
@@ -1717,7 +1751,7 @@ export default function App() {
 
                 {/* Recommended Training */}
                 <div className="px-6 mb-8 mt-8">
-                  <RecommendedTraining onPlay={handlePlayGame} />
+                  <RecommendedTraining onPlay={handlePlayGame} sessions={sessions} />
                 </div>
 
 
@@ -2598,6 +2632,15 @@ export default function App() {
                     </div>
                   </button>
 
+                  <button 
+                    onClick={() => setIsAccountOpen(true)}
+                    className="w-full flex items-center gap-4 text-left px-4 py-4 text-base text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 rounded-xl"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                      <User className="w-5 h-5 text-cyan-400" />
+                    </div>
+                    <span className="font-medium">Account</span>
+                  </button>
                   <button 
                     onClick={() => setIsProfileSettingsOpen(true)}
                     className="w-full flex items-center gap-4 text-left px-4 py-4 text-base text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 rounded-xl"
@@ -4373,6 +4416,160 @@ export default function App() {
                   </motion.div>
                 </motion.div>
               )}
+            </AnimatePresence>            {/* Account Modal */}
+            <AnimatePresence>
+              {isAccountOpen && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-[9990] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+                >
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                    className="w-full max-w-md bg-[#1c1c1e] rounded-3xl overflow-hidden shadow-2xl border border-white/10 flex flex-col"
+                  >
+                    <div className="p-6 border-b border-white/5 flex justify-between items-center">
+                      <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                        <User className="w-6 h-6 text-cyan-400" /> Account
+                      </h2>
+                      <button onClick={() => setIsAccountOpen(false)} className="text-white/60 hover:text-white transition-colors">
+                        <X className="w-6 h-6" />
+                      </button>
+                    </div>
+                    <div className="p-6 overflow-y-auto max-h-[70vh]">
+                      <div className="flex items-center gap-4 mb-8">
+                        <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center overflow-hidden border-2 border-blue-500/50">
+                          {profilePhoto ? (
+                            <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover" />
+                          ) : (
+                            <span className="text-2xl font-bold text-blue-400">{profileName ? profileName.charAt(0).toUpperCase() : 'U'}</span>
+                          )}
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-bold text-white">{profileName || 'User'}</h3>
+                          <p className="text-white/50 text-sm">{profileEmail || 'Not Provided'}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-2">
+                         <button 
+                            onClick={() => { setIsAccountOpen(false); setIsMyInfoOpen(true); }}
+                            className="w-full flex items-center gap-4 text-left px-4 py-4 text-base text-white hover:bg-white/5 transition-colors rounded-xl"
+                         >
+                            <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center">
+                              <Edit2 className="w-5 h-5 text-blue-400" />
+                            </div>
+                            <div className="flex-1">
+                              <span className="font-medium">Personal Information</span>
+                            </div>
+                            <ChevronRight className="w-5 h-5 text-white/40" />
+                         </button>
+                         
+                         <button 
+                            onClick={() => { setIsAccountOpen(false); setIsPremiumSubscriptionOpen(true); }}
+                            className="w-full flex items-center gap-4 text-left px-4 py-4 text-base text-white hover:bg-white/5 transition-colors rounded-xl"
+                         >
+                            <div className="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center">
+                              <Crown className="w-5 h-5 text-purple-400" />
+                            </div>
+                            <div className="flex-1">
+                              <span className="font-medium">Subscription</span>
+                            </div>
+                            <ChevronRight className="w-5 h-5 text-white/40" />
+                         </button>
+
+                         <button 
+                            onClick={() => setIsDeleteAccountPromptOpen(true)}
+                            className="w-full flex items-center gap-4 text-left px-4 py-4 text-base text-white hover:bg-white/5 transition-colors rounded-xl mt-4 border border-transparent hover:border-red-500/20"
+                         >
+                            <div className="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center">
+                              <Trash2 className="w-5 h-5 text-red-400" />
+                            </div>
+                            <div className="flex-1">
+                              <span className="font-medium text-red-400">Delete Account</span>
+                            </div>
+                            <ChevronRight className="w-5 h-5 text-white/40" />
+                         </button>
+                         
+                         <button 
+                            onClick={handleLogout}
+                            className="w-full flex items-center gap-4 text-left px-4 py-4 text-base text-white/70 hover:bg-white/5 transition-colors rounded-xl border border-transparent hover:border-white/10"
+                         >
+                            <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+                              <LogOut className="w-5 h-5 text-white/70" />
+                            </div>
+                            <span className="font-medium">Sign Out</span>
+                         </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Delete Account Prompt Modal */}
+            <AnimatePresence>
+              {isDeleteAccountPromptOpen && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-[9995] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+                >
+                  <motion.div
+                    initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                    animate={{ scale: 1, opacity: 1, y: 0 }}
+                    exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                    className="w-full max-w-md bg-[#1e1e24] rounded-2xl overflow-hidden shadow-2xl border border-red-500/30 flex flex-col p-6"
+                  >
+                    <div className="flex flex-col items-center text-center mb-6">
+                      <div className="w-16 h-16 rounded-full bg-red-500/20 flex items-center justify-center mb-4 border border-red-500/30">
+                        <Trash2 className="w-8 h-8 text-red-500" />
+                      </div>
+                      <h2 className="text-2xl font-bold text-white mb-2">Delete Account?</h2>
+                      <p className="text-white/60 text-sm">
+                        This action is permanent and cannot be undone. All your progress, scores, and subscriptions will be lost.
+                      </p>
+                    </div>
+                    
+                    <div className="mb-6">
+                      <label className="block text-sm font-medium text-white/70 mb-2">
+                        Type <span className="font-bold text-red-400">delete</span> to confirm:
+                      </label>
+                      <input 
+                        type="text"
+                        value={deleteConfirmationText}
+                        onChange={(e) => setDeleteConfirmationText(e.target.value)}
+                        placeholder="delete"
+                        className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-red-500/50 transition-colors"
+                      />
+                    </div>
+                    
+                    <div className="flex gap-4">
+                      <button
+                        onClick={() => { setIsDeleteAccountPromptOpen(false); setDeleteConfirmationText(''); }}
+                        className="flex-1 py-3 px-4 rounded-xl font-bold text-white/70 bg-white/5 hover:bg-white/10 transition-colors"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={handleDeleteAccount}
+                        disabled={deleteConfirmationText.toLowerCase() !== 'delete'}
+                        className={`flex-1 py-3 px-4 rounded-xl font-bold text-white transition-colors ${
+                          deleteConfirmationText.toLowerCase() === 'delete' 
+                            ? 'bg-red-600 hover:bg-red-700' 
+                            : 'bg-red-900/50 cursor-not-allowed opacity-50'
+                        }`}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              )}
             </AnimatePresence>
 
             <AnimatePresence>
@@ -4927,9 +5124,69 @@ export default function App() {
             onClose={() => setCelebrationData(null)}
           />
         )}
+        {showLevelUpPopup && leveledUpTo && (
+          <div className="fixed inset-0 bg-[#0a0a0c]/95 backdrop-blur-sm z-[100] flex flex-col items-center justify-center p-6 text-white text-center">
+            <motion.div initial={{ scale: 0.8, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} className="max-w-sm w-full bg-[#121215] rounded-[32px] p-8 border border-white/5 shadow-2xl relative overflow-hidden flex flex-col items-center">
+              <h2 className="text-3xl font-black mb-2">Level Up!</h2>
+              <p className="text-white/60 mb-6 font-medium">You've reached</p>
+              
+              <h3 className="text-4xl font-black text-[#00e5ff] tracking-tight mb-8 drop-shadow-[0_0_15px_rgba(0,229,255,0.4)]">
+                {leveledUpTo.title}
+              </h3>
+              
+              <div className="relative w-32 h-32 mb-10 flex items-center justify-center">
+                <div className="absolute inset-0 bg-indigo-500 rounded-[2.5rem] blur-xl opacity-40 animate-pulse"></div>
+                <div className="relative w-28 h-28 bg-gradient-to-br from-[#6b4eff] to-[#4c35e6] rounded-[2.2rem] flex items-center justify-center shadow-lg border-[3px] border-[#8168ff]/50 z-10">
+                   <svg className="w-14 h-14 text-white drop-shadow-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+                   <div className="absolute -bottom-4 bg-[#0a0a0c] px-4 py-1.5 rounded-b-2xl border-b-[3px] border-l-[3px] border-r-[3px] border-[#00e5ff] shadow-[0_4px_10px_rgba(0,229,255,0.3)]">
+                     <span className="text-xl font-bold text-white">{leveledUpTo.level}</span>
+                   </div>
+                </div>
+              </div>
+              
+              <p className="text-white font-bold mb-4 text-sm">Rewards Unlocked</p>
+              
+              <div className="flex gap-3 w-full mb-8">
+                <div className="flex-1 bg-white/[0.03] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
+                  <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center mb-2 shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+                    <span className="text-xs font-black text-white">XP</span>
+                  </div>
+                  <span className="font-bold text-lg text-white">+{leveledUpTo.maxXP}</span>
+                  <span className="text-[10px] text-white/40 uppercase font-bold">XP</span>
+                </div>
+                <div className="flex-1 bg-white/[0.03] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
+                  <div className="w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/50 flex items-center justify-center mb-2">
+                    <Diamond className="w-5 h-5 text-purple-400" />
+                  </div>
+                  <span className="font-bold text-lg text-white">+{leveledUpTo.level * 5}</span>
+                  <span className="text-[10px] text-white/40 uppercase font-bold">Gems</span>
+                </div>
+                <div className="flex-1 bg-white/[0.03] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
+                  <div className="w-10 h-10 rounded-full bg-green-500/10 border border-green-500/50 flex items-center justify-center mb-2">
+                    <Zap className="w-5 h-5 text-green-400" />
+                  </div>
+                  <span className="font-bold text-lg text-white">+1</span>
+                  <span className="text-[10px] text-white/40 uppercase font-bold leading-tight">Streak<br/>Slot</span>
+                </div>
+              </div>
+              
+              <button 
+                onClick={() => setShowLevelUpPopup(false)}
+                className="w-full bg-[#7c5cff] hover:bg-[#6848e8] text-white font-bold py-4 rounded-[16px] text-[16px] transition-colors shadow-[0_0_20px_rgba(124,92,255,0.4)]"
+              >
+                Continue Your Journey
+              </button>
+            </motion.div>
+          </div>
+        )}
     </div>
   );
 }
+
+
+
+
+
 
 
 
