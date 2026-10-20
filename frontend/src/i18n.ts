@@ -1,5 +1,6 @@
 export const translations: Record<Language, any> = {
   "en": {
+    "challenges": "Challenges",
     "home": "Home",
     "games": "Games",
     "coach": "Coach",
@@ -271,6 +272,7 @@ export const translations: Record<Language, any> = {
     "planReadyDesc": "We've created a personalized training plan to help you achieve your goals."
   },
   "hi": {
+    "challenges": "चुनौतियाँ",
     "home": "होम",
     "games": "गेम्स",
     "coach": "कोच",
@@ -533,6 +535,7 @@ export const translations: Record<Language, any> = {
     "cognitiveTraining": "संज्ञानात्मक प्रशिक्षण"
   },
   "bn": {
+    "challenges": "চ্যালেঞ্জ",
     "home": "বাড়ি",
     "games": "গেমস",
     "coach": "কোচ",
@@ -793,6 +796,7 @@ export const translations: Record<Language, any> = {
     "cognitiveTraining": "জ্ঞানীয় প্রশিক্ষণ"
   },
   "mr": {
+    "challenges": "आव्हाने",
     "home": "घर",
     "games": "खेळ",
     "coach": "प्रशिक्षक",
@@ -1055,6 +1059,7 @@ export const translations: Record<Language, any> = {
     "cognitiveTraining": "संज्ञानात्मक प्रशिक्षण"
   },
   "te": {
+    "challenges": "సవాళ్లు",
     "home": "హోమ్",
     "games": "ఆటలు",
     "coach": "కోచ్",
@@ -1315,6 +1320,7 @@ export const translations: Record<Language, any> = {
     "cognitiveTraining": "అభిజ్ఞా శిక్షణ"
   },
   "ta": {
+    "challenges": "சவால்கள்",
     "home": "வீடு",
     "games": "விளையாட்டுகள்",
     "coach": "பயிற்சியாளர்",
@@ -1575,6 +1581,7 @@ export const translations: Record<Language, any> = {
     "cognitiveTraining": "அறிவாற்றல் பயிற்சி"
   },
   "kn": {
+    "challenges": "ಸವಾಲುಗಳು",
     "selectLanguage": "ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ",
     "chooseLanguageDesc": "ಮುಂದುವರೆಯಲು ನಿಮ್ಮ ಆದ್ಯತೆಯ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ.",
     "continue": "ಮುಂದುವರಿಸಿ"

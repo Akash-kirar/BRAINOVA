@@ -73,6 +73,9 @@ import FeedbackPage from './components/FeedbackPage';
 import LeaderboardPage from './components/LeaderboardPage';
 import { useLeaderboard } from './hooks/useLeaderboard';
 import { ChallengesPage } from './components/ChallengesPage';
+import ChallengesIcon from './components/ChallengesIcon';
+import UserAvatar from './components/UserAvatar';
+import { BrainBuddyAvatar, AVATAR_THEMES } from './components/BrainBuddyAvatar';
 import { useProgress, GameSession } from './hooks/useProgress';
 import { t, Language } from './i18n';
 import CelebrationOverlay from '@/src/components/ui/CelebrationOverlay';
@@ -142,69 +145,92 @@ const games = [
   { id: 'pattern-recall', title: "Pattern Recall", category: "Memory", icon: <Zap className="w-5 h-5 text-amber-400" />, color: "bg-amber-500/10" },
 ];
 
+export const GAME_CATEGORIES_20 = [
+  'Logic',
+  'Memory',
+  'Focus & Attention',
+  'Math',
+  'Reaction Speed',
+  'Language & Vocabulary',
+  'Visual & Spatial',
+  'Observation',
+  'Pattern Recognition',
+  'Problem Solving',
+  'Working Memory',
+  'Processing Speed',
+  'Cognitive Flexibility',
+  'Planning & Strategy',
+  'Decision Making',
+  'Creativity',
+  'Auditory Memory',
+  'Multitasking',
+  'Sudoku & Grid Puzzles',
+  'Mazes & Navigation'
+] as const;
+
 export const allGames = [
   { id: 'memory-grid', title: 'Memory Grid', category: 'Memory', description: 'Remember highlighted squares', icon: <Brain className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
   { id: 'card-match', title: 'Card Match', category: 'Memory', description: 'Match identical cards', icon: <Sparkles className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
-  { id: 'sequence-recall', title: 'Sequence Recall', category: 'Memory', description: 'Remember number sequence', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20', isPremium: true },
-  { id: 'pattern-recall', title: 'Pattern Recall', category: 'Memory', description: 'Remember shapes pattern', icon: <Zap className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20', isPremium: true },
+  { id: 'sequence-recall', title: 'Sequence Recall', category: 'Working Memory', description: 'Remember number sequence', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20', isPremium: true },
+  { id: 'pattern-recall', title: 'Pattern Recall', category: 'Pattern Recognition', description: 'Remember shapes pattern', icon: <Zap className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20', isPremium: true },
   { id: 'image-memory', title: 'Image Memory', category: 'Memory', description: 'Remember pictures', icon: <Lightbulb className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
   { id: 'color-memory', title: 'Color Memory', category: 'Memory', description: 'Remember color order', icon: <Brain className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20', isPremium: true },
-  { id: 'number-recall', title: 'Number Recall', category: 'Memory', description: 'Remember numbers quickly', icon: <Calculator className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
-  { id: 'word-recall', title: 'Word Recall', category: 'Memory', description: 'Remember word list', icon: <Sparkles className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20', isPremium: true },
+  { id: 'number-recall', title: 'Number Recall', category: 'Working Memory', description: 'Remember numbers quickly', icon: <Calculator className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
+  { id: 'word-recall', title: 'Word Recall', category: 'Working Memory', description: 'Remember word list', icon: <Sparkles className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20', isPremium: true },
   { id: 'flash-memory', title: 'Flash Memory', category: 'Memory', description: 'Memorize items in seconds', icon: <Zap className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20', isPremium: true },
   { id: 'object-position', title: 'Object Position', category: 'Memory', description: 'Remember object positions', icon: <Target className="w-8 h-8 text-green-400" />, color: 'bg-green-500/10', border: 'border-green-500/20' },
-  { id: 'sound-memory', title: 'Sound Memory', category: 'Memory', description: 'Remember sound order', icon: <Activity className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20', isPremium: true },
-  { id: 'memory-path', title: 'Memory Path', category: 'Memory', description: 'Remember a path on grid', icon: <Brain className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
+  { id: 'sound-memory', title: 'Sound Memory', category: 'Auditory Memory', description: 'Remember sound order', icon: <Activity className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20', isPremium: true },
+  { id: 'memory-path', title: 'Memory Path', category: 'Mazes & Navigation', description: 'Remember a path on grid', icon: <Brain className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
   { id: 'memory-tiles', title: 'Memory Tiles', category: 'Memory', description: 'Tap tiles in correct order', icon: <Sparkles className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
   { id: 'symbol-match', title: 'Symbol Match', category: 'Memory', description: 'Match symbol pairs', icon: <Lightbulb className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
-  { id: 'memory-matrix', title: 'Memory Matrix', category: 'Memory', description: 'Remember large grid pattern', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
-  { id: 'fast-recall', title: 'Fast Recall', category: 'Memory', description: 'Quick memory test', icon: <Zap className="w-8 h-8 text-orange-400" />, color: 'bg-orange-500/10', border: 'border-orange-500/20', isPremium: true },
+  { id: 'memory-matrix', title: 'Memory Matrix', category: 'Working Memory', description: 'Remember large grid pattern', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+  { id: 'fast-recall', title: 'Fast Recall', category: 'Working Memory', description: 'Quick memory test', icon: <Zap className="w-8 h-8 text-orange-400" />, color: 'bg-orange-500/10', border: 'border-orange-500/20', isPremium: true },
   { id: 'picture-recall', title: 'Picture Recall', category: 'Memory', description: 'Remember picture details', icon: <Brain className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
-  { id: 'number-pattern', title: 'Number Pattern Memory', category: 'Memory', description: 'Remember number patterns', icon: <Calculator className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
+  { id: 'number-pattern', title: 'Number Pattern Memory', category: 'Pattern Recognition', description: 'Remember number patterns', icon: <Calculator className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
   { id: 'memory-flip', title: 'Memory Flip Challenge', category: 'Memory', description: 'Flip and remember', icon: <Sparkles className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20' },
-  { id: 'speed-memory', title: 'Speed Memory Challenge', category: 'Memory', description: 'Fast-paced memory', icon: <Zap className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20', isPremium: true },
+  { id: 'speed-memory', title: 'Speed Memory Challenge', category: 'Processing Speed', description: 'Fast-paced memory', icon: <Zap className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20', isPremium: true },
   // Focus & Attention Games
-  { id: 'find-different-shape', title: 'Find the Different Shape', category: 'Focus', description: 'Spot the unique shape', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
-  { id: 'odd-one-out', title: 'Odd One Out', category: 'Focus', description: 'Find the odd item out', icon: <Lightbulb className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
-  { id: 'focus-tap', title: 'Focus Tap', category: 'Focus', description: 'Tap target quickly', icon: <Zap className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
-  { id: 'moving-target-tap', title: 'Moving Target Tap', category: 'Focus', description: 'Tap moving targets', icon: <Activity className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20', isPremium: true },
-  { id: 'color-match-focus', title: 'Color Match Focus', category: 'Focus', description: 'Match word and color', icon: <Brain className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
+  { id: 'find-different-shape', title: 'Find the Different Shape', category: 'Focus & Attention', description: 'Spot the unique shape', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+  { id: 'odd-one-out', title: 'Odd One Out', category: 'Focus & Attention', description: 'Find the odd item out', icon: <Lightbulb className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
+  { id: 'focus-tap', title: 'Focus Tap', category: 'Focus & Attention', description: 'Tap target quickly', icon: <Zap className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
+  { id: 'moving-target-tap', title: 'Moving Target Tap', category: 'Multitasking', description: 'Tap moving targets', icon: <Activity className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20', isPremium: true },
+  { id: 'color-match-focus', title: 'Color Match Focus', category: 'Cognitive Flexibility', description: 'Match word and color', icon: <Brain className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
   { id: 'find-hidden-object', title: 'Find Hidden Object', category: 'Observation', description: 'Spot hidden items', icon: <Target className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
-  { id: 'distraction-filter', title: 'Distraction Filter', category: 'Focus', description: 'Ignore wrong objects', icon: <Sparkles className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20', isPremium: true },
-  { id: 'focus-circle', title: 'Focus Circle', category: 'Focus', description: 'Track moving circle', icon: <Activity className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
+  { id: 'distraction-filter', title: 'Distraction Filter', category: 'Focus & Attention', description: 'Ignore wrong objects', icon: <Sparkles className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20', isPremium: true },
+  { id: 'focus-circle', title: 'Focus Circle', category: 'Focus & Attention', description: 'Track moving circle', icon: <Activity className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
   { id: 'visual-search', title: 'Visual Search', category: 'Observation', description: 'Search for specific items', icon: <Lightbulb className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20', isPremium: true },
-  { id: 'target-finder', title: 'Target Finder', category: 'Focus', description: 'Find the specific target', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
-  { id: 'focus-lines', title: 'Focus Lines', category: 'Focus', description: 'Follow correct path', icon: <Zap className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
-  { id: 'quick-select', title: 'Quick Select', category: 'Focus', description: 'Select items quickly', icon: <Activity className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
+  { id: 'target-finder', title: 'Target Finder', category: 'Focus & Attention', description: 'Find the specific target', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+  { id: 'focus-lines', title: 'Focus Lines', category: 'Focus & Attention', description: 'Follow correct path', icon: <Zap className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
+  { id: 'quick-select', title: 'Quick Select', category: 'Processing Speed', description: 'Select items quickly', icon: <Activity className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
   { id: 'spot-difference', title: 'Spot the Difference', category: 'Observation', description: 'Find differences in images', icon: <Brain className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
-  { id: 'multi-object-tracking', title: 'Multi Object Tracking', category: 'Focus', description: 'Track multiple objects', icon: <Target className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20', isPremium: true },
-  { id: 'attention-grid', title: 'Attention Grid', category: 'Focus', description: 'Focus on grid patterns', icon: <Sparkles className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+  { id: 'multi-object-tracking', title: 'Multi Object Tracking', category: 'Multitasking', description: 'Track multiple objects', icon: <Target className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20', isPremium: true },
+  { id: 'attention-grid', title: 'Attention Grid', category: 'Focus & Attention', description: 'Focus on grid patterns', icon: <Sparkles className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
   
     { id: 'shadow-match', title: 'Shadow Match', category: 'Observation', description: 'Match item to shadow', icon: <Search className="w-8 h-8 text-violet-400" />, color: 'bg-violet-500/10', border: 'border-violet-500/20' },
   { id: 'find-identical', title: 'Find Identical', category: 'Observation', description: 'Find the exact match', icon: <Target className="w-8 h-8 text-fuchsia-400" />, color: 'bg-fuchsia-500/10', border: 'border-fuchsia-500/20' },
   { id: 'shape-count', title: 'Shape Count', category: 'Observation', description: 'Count specific shapes', icon: <Box className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
   { id: 'color-anomaly', title: 'Color Anomaly', category: 'Observation', description: 'Spot the odd color', icon: <Sparkle className="w-8 h-8 text-sky-400" />, color: 'bg-sky-500/10', border: 'border-sky-500/20', isPremium: true },
   // Logic & Puzzle Games
-  { id: 'sudoku-lite', title: 'Sudoku Lite', category: 'Logic', description: 'Mini 4x4 Sudoku', icon: <Grid className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20', isPremium: true },
+  { id: 'sudoku-lite', title: 'Sudoku Lite', category: 'Sudoku & Grid Puzzles', description: 'Mini 4x4 Sudoku', icon: <Grid className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20', isPremium: true },
   { id: 'pattern-logic', title: 'Pattern Logic', category: 'Logic', description: 'Find the next pattern', icon: <Brain className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
   { id: 'sequence-logic', title: 'Sequence Logic', category: 'Logic', description: 'Find the next number', icon: <Calculator className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
-  { id: 'smart-grid', title: 'Smart Grid Puzzle', category: 'Logic', description: 'Turn off all lights', icon: <Lightbulb className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20', isPremium: true },
-  { id: 'cube-rotation', title: 'Cube Rotation Puzzle', category: 'Logic', description: 'Match the target grid', icon: <Box className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20', isPremium: true },
-  { id: 'puzzle-match', title: 'Puzzle Match', category: 'Logic', description: 'Match logical pairs', icon: <Puzzle className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20', isPremium: true },
-  { id: 'hidden-pattern', title: 'Hidden Pattern Puzzle', category: 'Logic', description: 'Find the missing piece', icon: <Search className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
-  { id: 'block-puzzle', title: 'Block Puzzle', category: 'Logic', description: 'Fit blocks in grid', icon: <Cpu className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
-  { id: 'shape-fit', title: 'Shape Fit Puzzle', category: 'Logic', description: 'Fit shapes together', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+  { id: 'smart-grid', title: 'Smart Grid Puzzle', category: 'Sudoku & Grid Puzzles', description: 'Turn off all lights', icon: <Lightbulb className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20', isPremium: true },
+  { id: 'cube-rotation', title: 'Cube Rotation Puzzle', category: 'Problem Solving', description: 'Match the target grid', icon: <Box className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20', isPremium: true },
+  { id: 'puzzle-match', title: 'Puzzle Match', category: 'Problem Solving', description: 'Match logical pairs', icon: <Puzzle className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20', isPremium: true },
+  { id: 'hidden-pattern', title: 'Hidden Pattern Puzzle', category: 'Pattern Recognition', description: 'Find the missing piece', icon: <Search className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
+  { id: 'block-puzzle', title: 'Block Puzzle', category: 'Problem Solving', description: 'Fit blocks in grid', icon: <Cpu className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
+  { id: 'shape-fit', title: 'Shape Fit Puzzle', category: 'Problem Solving', description: 'Fit shapes together', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
   { id: 'number-puzzle', title: 'Number Puzzle', category: 'Logic', description: 'Solve number logic', icon: <Calculator className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
-  { id: 'grid-logic', title: 'Grid Logic', category: 'Logic', description: 'Solve grid puzzles', icon: <Grid className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
-  { id: 'maze-solver', title: 'Maze Solver', category: 'Logic', description: 'Find the exit', icon: <Activity className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
+  { id: 'grid-logic', title: 'Grid Logic', category: 'Sudoku & Grid Puzzles', description: 'Solve grid puzzles', icon: <Grid className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+  { id: 'maze-solver', title: 'Maze Solver', category: 'Mazes & Navigation', description: 'Find the exit', icon: <Activity className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
   { id: 'rotate-puzzle', title: 'Rotate Puzzle', category: 'Logic', description: 'Rotate to solve', icon: <RotateCcw className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
-  { id: 'pattern-builder', title: 'Pattern Builder', category: 'Logic', description: 'Build the pattern', icon: <Sparkles className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20' },
+  { id: 'pattern-builder', title: 'Pattern Builder', category: 'Pattern Recognition', description: 'Build the pattern', icon: <Sparkles className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20' },
   { id: 'shape-logic', title: 'Shape Logic', category: 'Logic', description: 'Shape-based logic', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
-  { id: 'connect-lines', title: 'Connect Lines Puzzle', category: 'Logic', description: 'Connect matching dots', icon: <Activity className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
-  { id: 'sliding-puzzle', title: 'Sliding Puzzle', category: 'Logic', description: 'Slide tiles to order', icon: <Grid className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
-  { id: 'puzzle-grid', title: 'Puzzle Grid', category: 'Logic', description: 'Grid-based puzzles', icon: <Cpu className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
-  { id: 'brain-blocks', title: 'Brain Blocks', category: 'Logic', description: 'Block logic puzzles', icon: <Brain className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
-  { id: 'logic-path', title: 'Logic Path', category: 'Logic', description: 'Find the logical path', icon: <Target className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+  { id: 'connect-lines', title: 'Connect Lines Puzzle', category: 'Planning & Strategy', description: 'Connect matching dots', icon: <Activity className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
+  { id: 'sliding-puzzle', title: 'Sliding Puzzle', category: 'Problem Solving', description: 'Slide tiles to order', icon: <Grid className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
+  { id: 'puzzle-grid', title: 'Puzzle Grid', category: 'Sudoku & Grid Puzzles', description: 'Grid-based puzzles', icon: <Cpu className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
+  { id: 'brain-blocks', title: 'Brain Blocks', category: 'Problem Solving', description: 'Block logic puzzles', icon: <Brain className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
+  { id: 'logic-path', title: 'Logic Path', category: 'Mazes & Navigation', description: 'Find the logical path', icon: <Target className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
   
   // Math & Calculation Games
   { id: 'quick-addition', title: 'Quick Addition', category: 'Math', description: 'Fast addition problems', icon: <Calculator className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
@@ -225,49 +251,49 @@ export const allGames = [
   { id: 'reaction-tap', title: 'Reaction Tap', category: 'Reaction Speed', description: 'Tap when green', icon: <Zap className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
   { id: 'color-reaction', title: 'Color Reaction', category: 'Reaction Speed', description: 'Match color and word', icon: <Activity className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20', isPremium: true },
   { id: 'tap-the-target', title: 'Tap the Target', category: 'Reaction Speed', description: 'Tap targets quickly', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
-  { id: 'fast-button', title: 'Fast Button', category: 'Reaction Speed', description: 'Tap as fast as possible', icon: <Zap className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
+  { id: 'fast-button', title: 'Fast Button', category: 'Processing Speed', description: 'Tap as fast as possible', icon: <Zap className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
   { id: 'reaction-light', title: 'Reaction Light', category: 'Reaction Speed', description: 'Traffic light reaction', icon: <Lightbulb className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20', isPremium: true },
   { id: 'tap-when-green', title: 'Tap When Green', category: 'Reaction Speed', description: 'Wait for green', icon: <Target className="w-8 h-8 text-green-400" />, color: 'bg-green-500/10', border: 'border-green-500/20' },
   { id: 'speed-circle', title: 'Speed Circle', category: 'Reaction Speed', description: 'Tap shrinking circles', icon: <Activity className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
   { id: 'quick-reflex', title: 'Quick Reflex', category: 'Reaction Speed', description: 'Test your reflexes', icon: <Zap className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20', isPremium: true },
   { id: 'reaction-timer', title: 'Reaction Timer', category: 'Reaction Speed', description: 'Measure reaction time', icon: <Clock className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
-  { id: 'tap-the-moving-dot', title: 'Tap the Moving Dot', category: 'Reaction Speed', description: 'Track and tap', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+  { id: 'tap-the-moving-dot', title: 'Tap the Moving Dot', category: 'Processing Speed', description: 'Track and tap', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
   { id: 'reflex-challenge', title: 'Reflex Challenge', category: 'Reaction Speed', description: 'Ultimate reflex test', icon: <Zap className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
   { id: 'speed-match', title: 'Speed Match', category: 'Reaction Speed', description: 'Match quickly', icon: <Activity className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20', isPremium: true },
   { id: 'flash-tap', title: 'Flash Tap', category: 'Reaction Speed', description: 'Tap flashing items', icon: <Lightbulb className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
-  { id: 'quick-click', title: 'Quick Click', category: 'Reaction Speed', description: 'Click as fast as you can', icon: <Target className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+  { id: 'quick-click', title: 'Quick Click', category: 'Processing Speed', description: 'Click as fast as you can', icon: <Target className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
   { id: 'lightning-reaction', title: 'Lightning Reaction', category: 'Reaction Speed', description: 'Lightning fast taps', icon: <Zap className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20', isPremium: true },
   { id: 'word-builder', title: 'Word Builder', category: 'Language & Vocabulary', description: 'Build words from letters', icon: <Type className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
   { id: 'word-scramble', title: 'Word Scramble', category: 'Language & Vocabulary', description: 'Unscramble the letters', icon: <Shuffle className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
   { id: 'vocabulary-match', title: 'Vocabulary Match', category: 'Language & Vocabulary', description: 'Match words to meanings', icon: <BookOpen className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
   { id: 'letter-sequence', title: 'Letter Sequence', category: 'Language & Vocabulary', description: 'Find the next letter', icon: <ListOrdered className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
-  { id: 'word-memory', title: 'Word Memory', category: 'Language & Vocabulary', description: 'Remember the words', icon: <Brain className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
+  { id: 'word-memory', title: 'Word Memory', category: 'Memory', description: 'Remember the words', icon: <Brain className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
   { id: 'find-the-word', title: 'Find the Word', category: 'Language & Vocabulary', description: 'Find hidden words', icon: <Search className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
   { id: 'missing-letter', title: 'Missing Letter', category: 'Language & Vocabulary', description: 'Fill in the blank', icon: <Type className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
   { id: 'word-puzzle', title: 'Word Puzzle', category: 'Language & Vocabulary', description: 'Solve word puzzles', icon: <Puzzle className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20' },
   { id: 'word-association', title: 'Word Association', category: 'Language & Vocabulary', description: 'Link related words', icon: <Link className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
   { id: 'spelling-challenge', title: 'Spelling Challenge', category: 'Language & Vocabulary', description: 'Spell correctly', icon: <CheckCircle className="w-8 h-8 text-green-400" />, color: 'bg-green-500/10', border: 'border-green-500/20', isPremium: true },
-  { id: 'word-speed-test', title: 'Word Speed Test', category: 'Language & Vocabulary', description: 'Fast word recognition', icon: <Zap className="w-8 h-8 text-orange-400" />, color: 'bg-orange-500/10', border: 'border-orange-500/20', isPremium: true },
+  { id: 'word-speed-test', title: 'Word Speed Test', category: 'Processing Speed', description: 'Fast word recognition', icon: <Zap className="w-8 h-8 text-orange-400" />, color: 'bg-orange-500/10', border: 'border-orange-500/20', isPremium: true },
   { id: 'letter-grid-search', title: 'Letter Grid Search', category: 'Language & Vocabulary', description: 'Search in grid', icon: <Grid className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
   { id: 'synonym-match', title: 'Synonym Match', category: 'Language & Vocabulary', description: 'Match synonyms', icon: <Copy className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20', isPremium: true },
   { id: 'word-pattern', title: 'Word Pattern', category: 'Language & Vocabulary', description: 'Find word patterns', icon: <Activity className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
   { id: 'vocabulary-builder', title: 'Vocabulary Builder', category: 'Language & Vocabulary', description: 'Learn new words', icon: <BookOpen className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20', isPremium: true },
   // Visual & Spatial Games
-  { id: 'pattern-recognition', title: 'Pattern Recognition', category: 'Visual & Spatial', description: 'Identify visual patterns', icon: <Grid className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
+  { id: 'pattern-recognition', title: 'Pattern Recognition', category: 'Pattern Recognition', description: 'Identify visual patterns', icon: <Grid className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
   { id: 'mental-rotation', title: 'Mental Rotation', category: 'Visual & Spatial', description: 'Rotate objects mentally', icon: <RotateCcw className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
   { id: 'spatial-reasoning', title: 'Spatial Reasoning', category: 'Visual & Spatial', description: 'Solve spatial puzzles', icon: <Box className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20', isPremium: true },
   { id: 'symmetry-test', title: 'Symmetry Test', category: 'Visual & Spatial', description: 'Create mirror images', icon: <ScanFace className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
   { id: 'block-count', title: 'Block Count', category: 'Visual & Spatial', description: 'Count 3D blocks', icon: <Cuboid className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20', isPremium: true },
-  { id: 'perfect-path', title: 'Perfect Path', category: 'Visual & Spatial', description: 'Trace a path in grid', icon: <Route className="w-8 h-8 text-green-400" />, color: 'bg-green-500/10', border: 'border-green-500/20' },
+  { id: 'perfect-path', title: 'Perfect Path', category: 'Mazes & Navigation', description: 'Trace a path in grid', icon: <Route className="w-8 h-8 text-green-400" />, color: 'bg-green-500/10', border: 'border-green-500/20' },
   { id: 'layer-logic', title: 'Layer Logic', category: 'Visual & Spatial', description: 'Combine overlapping layers', icon: <Layers className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20', isPremium: true },
   // Executive Function
-  { id: 'planning', title: 'Planning', category: 'Executive Function', description: 'Plan your route', icon: <Grid className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
-  { id: 'decision-making', title: 'Decision Making', category: 'Executive Function', description: 'Quick optimal choices', icon: <TrendingUp className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
-  { id: 'task-switching', title: 'Task Switching', category: 'Executive Function', description: 'Switch contexts quickly', icon: <Activity className="w-8 h-8 text-violet-400" />, color: 'bg-violet-500/10', border: 'border-violet-500/20', isPremium: true },
-  { id: 'rule-sorter', title: 'Rule Sorter', category: 'Executive Function', description: 'Sort by changing rules', icon: <Filter className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
-  { id: 'go-no-go', title: 'Impulse Control', category: 'Executive Function', description: 'Go or No-Go', icon: <Target className="w-8 h-8 text-red-400" />, color: 'bg-red-500/10', border: 'border-red-500/20', isPremium: true },
-  { id: 'sequence-planner', title: 'Sequence Planner', category: 'Executive Function', description: 'Alternate item types', icon: <ListOrdered className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
-  { id: 'memory-updater', title: 'Memory Updater', category: 'Executive Function', description: 'Update memory states', icon: <RefreshCcw className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20', isPremium: true },
+  { id: 'planning', title: 'Planning', category: 'Planning & Strategy', description: 'Plan your route', icon: <Grid className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
+  { id: 'decision-making', title: 'Decision Making', category: 'Decision Making', description: 'Quick optimal choices', icon: <TrendingUp className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
+  { id: 'task-switching', title: 'Task Switching', category: 'Cognitive Flexibility', description: 'Switch contexts quickly', icon: <Activity className="w-8 h-8 text-violet-400" />, color: 'bg-violet-500/10', border: 'border-violet-500/20', isPremium: true },
+  { id: 'rule-sorter', title: 'Rule Sorter', category: 'Cognitive Flexibility', description: 'Sort by changing rules', icon: <Filter className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+  { id: 'go-no-go', title: 'Impulse Control', category: 'Decision Making', description: 'Go or No-Go', icon: <Target className="w-8 h-8 text-red-400" />, color: 'bg-red-500/10', border: 'border-red-500/20', isPremium: true },
+  { id: 'sequence-planner', title: 'Sequence Planner', category: 'Planning & Strategy', description: 'Alternate item types', icon: <ListOrdered className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
+  { id: 'memory-updater', title: 'Memory Updater', category: 'Working Memory', description: 'Update memory states', icon: <RefreshCcw className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20', isPremium: true },
   // Creativity
   { id: 'pattern-creation', title: 'Pattern Creation', category: 'Creativity', description: 'Design symmetries', icon: <Paintbrush className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20' },
   { id: 'creative-thinking', title: 'Creative Thinking', category: 'Creativity', description: 'Alternative uses', icon: <Sparkles className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20', isPremium: true },
@@ -275,7 +301,14 @@ export const allGames = [
   { id: 'color-mixer', title: 'Color Mixer', category: 'Creativity', description: 'Mix colors precisely', icon: <Palette className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
   { id: 'emoji-story', title: 'Emoji Story', category: 'Creativity', description: 'Tell story via emoji', icon: <Smile className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
   { id: 'pixel-art', title: 'Pixel Art', category: 'Creativity', description: 'Draw pixel creations', icon: <Brush className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
-  { id: 'shape-builder', title: 'Shape Builder', category: 'Creativity', description: 'Combine basic shapes', icon: <Shapes className="w-8 h-8 text-green-400" />, color: 'bg-green-500/10', border: 'border-green-500/20', isPremium: true },
+  { id: 'shape-builder', title: 'Shape Builder', category: 'Creativity', description: 'Combine basic shapes', icon: <Shapes className="w-8 h-8 text-green-400" />, color: 'bg-green-500/10', border: 'border-green-500/20', isPremium: true },,
+  // Additional Auditory Memory & Multitasking & Strategy Games
+  { id: 'tone-sequence', title: 'Tone Sequence', category: 'Auditory Memory', description: 'Remember sound sequences', icon: <Activity className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20', isPremium: true },
+  { id: 'audio-recall', title: 'Audio Recall', category: 'Auditory Memory', description: 'Recall acoustic cues', icon: <Mic className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+  { id: 'dual-task', title: 'Dual Task Challenge', category: 'Multitasking', description: 'Split attention across tasks', icon: <Shuffle className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
+  { id: 'risk-assessment', title: 'Risk Assessment', category: 'Decision Making', description: 'Weigh odds under pressure', icon: <Target className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
+  { id: 'strategy-quest', title: 'Strategy Quest', category: 'Planning & Strategy', description: 'Think three steps ahead', icon: <Route className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+  { id: 'set-shifter', title: 'Set Shifter', category: 'Cognitive Flexibility', description: 'Adapt to rapid rule shifts', icon: <Filter className="w-8 h-8 text-violet-400" />, color: 'bg-violet-500/10', border: 'border-violet-500/20' },
 ];
 
 const gameCategories = [
@@ -560,6 +593,18 @@ export default function App() {
   const [isPhotoOptionsOpen, setIsPhotoOptionsOpen] = useState(false);
   const cameraInputRef = React.useRef<HTMLInputElement>(null);
   const galleryInputRef = React.useRef<HTMLInputElement>(null);
+
+    const handleSelectMascotTheme = async (themeId: string) => {
+    const avatarKey = 'avatar:' + themeId;
+    setProfilePhoto(avatarKey);
+    if (supabase) {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        await supabase.from('profiles').update({ avatar_url: avatarKey }).eq('id', session.user.id);
+      }
+    }
+    setIsPhotoOptionsOpen(false);
+  };
 
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -1732,8 +1777,8 @@ export default function App() {
                     className="w-full flex items-center justify-between p-4 bg-[#1a1130] border border-[#2a1b4a] rounded-[24px] hover:bg-[#231740] transition-colors group relative overflow-hidden"
                   >
                     <div className="flex items-center gap-4 relative z-10">
-                      <div className="w-14 h-14 rounded-2xl bg-[#341a5f] flex items-center justify-center shrink-0">
-                        <Brain className="w-7 h-7 text-[#d8b4fe]" />
+                      <div className="w-14 h-14 rounded-2xl bg-[#1e293b] flex items-center justify-center shrink-0 border border-blue-500/20">
+                        <ChallengesIcon className="w-7 h-7 text-blue-400" />
                       </div>
                       <div className="text-left">
                         <h3 className="text-[19px] font-bold text-white mb-0.5 tracking-wide">Challenges</h3>
@@ -1769,7 +1814,7 @@ export default function App() {
                   <p className="text-white/60 text-sm mb-6">{t('selectGame', language)}</p>
                   
                   <div className="flex overflow-x-auto hide-scrollbar scroll-smooth gap-4 pb-6 pt-2 -mx-6 px-6 items-center">
-                    {['All', 'Logic', 'Memory', 'Focus', 'Math', 'Reaction Speed', 'Language & Vocabulary', 'Visual & Spatial', 'Observation', 'Executive Function', 'Creativity'].map(category => (
+                    {['All', ...GAME_CATEGORIES_20].map(category => (
                       <button
                         key={category}
                         onClick={() => setActiveCategoryFilter(category)}
@@ -1826,14 +1871,20 @@ export default function App() {
                     </div>
                   )}
 
-                  {activeCategoryFilter !== 'AI Recommended' && Array.from(new Set(allGames.map(g => g.category)))
+                  {activeCategoryFilter !== 'AI Recommended' && GAME_CATEGORIES_20
                     .filter(category => {
                       if (activeCategoryFilter === 'All') return true;
                       return category === activeCategoryFilter;
                     })
-                    .map(category => (
+                    .map(category => {
+                      const categoryGames = allGames.filter(g => g.category === category);
+                      if (categoryGames.length === 0) return null;
+                      return (
                     <div key={category}>
-                      <h3 className="text-xl font-bold mb-4 text-white/80 px-6">{t(category.toLowerCase(), language)} {t('games', language)}</h3>
+                      <h3 className="text-xl font-bold mb-4 text-white/80 px-6 flex items-center justify-between">
+                        <span>{category} Games</span>
+                        <span className="text-xs font-normal text-white/40">{categoryGames.length} games</span>
+                      </h3>
                       <GameCarousel className="flex gap-4 pb-4 px-6 hide-scrollbar">
                         {allGames.filter(g => g.category === category).map(game => (
                           <button 
@@ -1867,7 +1918,7 @@ export default function App() {
                         ))}
                       </GameCarousel>
                     </div>
-                  ))}
+                  );})}
                 </div>
               </motion.div>
             )}
@@ -2349,13 +2400,12 @@ export default function App() {
                           <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 via-purple-500 to-transparent rounded-full p-[2px]">
                             <div className="w-full h-full bg-[#0b101a] rounded-full overflow-hidden flex items-center justify-center p-[3px] relative">
                               <div className="w-full h-full bg-[#1b2532] rounded-full overflow-hidden shadow-inner">
-                                {profilePhoto ? (
-                                  <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover" style={{ filter: displayMode === 'light' ? 'invert(1) hue-rotate(180deg)' : 'none' }} />
-                                ) : (
-                                  <div className="w-full h-full flex items-center justify-center pt-[2px]">
-                                    <span className="text-[32px] font-medium text-white">{(profileName || "U").charAt(0).toUpperCase()}</span>
-                                  </div>
-                                )}
+                                <UserAvatar 
+                                  src={profilePhoto} 
+                                  name={profileName} 
+                                  className="w-full h-full object-cover" 
+                                  imgStyle={{ filter: displayMode === 'light' ? 'invert(1) hue-rotate(180deg)' : 'none' }} 
+                                />
                               </div>
                             </div>
                           </div>
@@ -2616,23 +2666,6 @@ export default function App() {
                   </button>
 
                   <button 
-                    onClick={() => setIsNotificationsOpen(true)}
-                    className="w-full flex items-center gap-4 text-left px-4 py-4 text-base text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 rounded-xl"
-                  >
-                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                      <Bell className="w-5 h-5 text-rose-400" />
-                    </div>
-                    <div className="flex flex-1 justify-between items-center">
-                      <span className="font-medium">Notifications</span>
-                      {notifications.filter(n => !n.isRead).length > 0 && (
-                        <div className="w-5 h-5 rounded-full bg-rose-500 flex items-center justify-center">
-                          <span className="text-[10px] font-bold">{notifications.filter(n => !n.isRead).length}</span>
-                        </div>
-                      )}
-                    </div>
-                  </button>
-
-                  <button 
                     onClick={() => setIsAccountOpen(true)}
                     className="w-full flex items-center gap-4 text-left px-4 py-4 text-base text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 rounded-xl"
                   >
@@ -2658,13 +2691,6 @@ export default function App() {
                       <LogOut className="w-5 h-5 text-red-400" />
                     </div>
                     <span className="font-medium">Log Out</span>
-                  </button>
-
-                  <button 
-                    onClick={() => setIsPremiumSubscriptionOpen(true)}
-                    className="w-full flex items-center justify-center px-4 py-5 mt-4 text-xl font-bold text-white bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500 hover:from-violet-500 hover:via-fuchsia-500 hover:to-pink-400 shadow-[0_0_25px_rgba(217,70,239,0.4)] hover:shadow-[0_0_35px_rgba(217,70,239,0.6)] transition-all duration-300 rounded-full hover:-translate-y-1"
-                  >
-                    Brainova Premium
                   </button>
                 </div>
               </motion.div>
@@ -4366,53 +4392,96 @@ export default function App() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="fixed inset-0 bg-black/60 z-[99999] flex items-end justify-center sm:items-center"
+                  className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99999] flex items-end justify-center sm:items-center p-0 sm:p-4"
                   onClick={() => setIsPhotoOptionsOpen(false)}
                 >
                   <motion.div 
-                    initial={{ y: 300 }}
-                    animate={{ y: 0 }}
-                    exit={{ y: 300 }}
+                    initial={{ y: 300, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: 300, opacity: 0 }}
                     onClick={(e) => e.stopPropagation()}
-                    className="bg-[#121124] w-full sm:w-[400px] rounded-t-3xl sm:rounded-3xl p-6 pb-10 sm:pb-6 shadow-2xl border border-white/10"
+                    className="bg-[#121124] w-full sm:w-[480px] rounded-t-3xl sm:rounded-3xl p-6 pb-8 sm:pb-6 shadow-2xl border border-white/10 max-h-[85vh] flex flex-col"
                   >
-                    <div className="w-12 h-1.5 bg-white/20 rounded-full mx-auto mb-6 sm:hidden"></div>
-                    <h3 className="text-xl font-bold text-white mb-6 text-center">Upload Profile Photo</h3>
-                    
-                    <div className="grid grid-cols-2 gap-4">
-                      <button
-                        onClick={() => {
-                          setIsPhotoOptionsOpen(false);
-                          cameraInputRef.current?.click();
-                        }}
-                        className="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                    <div className="w-12 h-1.5 bg-white/20 rounded-full mx-auto mb-4 sm:hidden"></div>
+                    <div className="flex justify-between items-center mb-5">
+                      <div>
+                        <h3 className="text-xl font-bold text-white">Choose Profile Avatar</h3>
+                        <p className="text-xs text-white/50 mt-0.5">Select a Brain Buddy theme or upload your photo</p>
+                      </div>
+                      <button 
+                        onClick={() => setIsPhotoOptionsOpen(false)}
+                        className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
                       >
-                        <div className="w-14 h-14 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/30">
-                          <Camera className="w-7 h-7 text-blue-400" />
-                        </div>
-                        <span className="font-medium text-white text-lg">Camera</span>
-                      </button>
-                      
-                      <button
-                        onClick={() => {
-                          setIsPhotoOptionsOpen(false);
-                          galleryInputRef.current?.click();
-                        }}
-                        className="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
-                      >
-                        <div className="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center border border-purple-500/30">
-                          <Images className="w-7 h-7 text-purple-400" />
-                        </div>
-                        <span className="font-medium text-white text-lg">Gallery</span>
+                        <X className="w-5 h-5" />
                       </button>
                     </div>
-                    
-                    <button
-                      onClick={() => setIsPhotoOptionsOpen(false)}
-                      className="w-full mt-6 py-4 rounded-xl font-bold text-white/60 hover:text-white bg-white/5 hover:bg-white/10 transition-colors"
-                    >
-                      Cancel
-                    </button>
+
+                    <div className="overflow-y-auto hide-scrollbar space-y-6 pr-1">
+                      {/* Brain Buddy Collection Grid */}
+                      <div>
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Brain Buddy Collection</span>
+                          <span className="text-[11px] text-white/40">8 Unique Themes</span>
+                        </div>
+                        
+                        <div className="grid grid-cols-4 gap-3">
+                          {AVATAR_THEMES.map((theme) => {
+                            const isSelected = profilePhoto === 'avatar:' + theme.id || (!profilePhoto && theme.id === 'emerald');
+                            return (
+                              <button
+                                key={theme.id}
+                                onClick={() => handleSelectMascotTheme(theme.id)}
+                                className={`flex flex-col items-center gap-1.5 p-2 rounded-2xl transition-all duration-200 group relative ${
+                                  isSelected 
+                                    ? 'bg-emerald-500/15 border-2 border-[#00D68F] shadow-[0_0_15px_rgba(0,214,143,0.35)] scale-105' 
+                                    : 'bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20'
+                                }`}
+                              >
+                                <div className="w-12 h-12 rounded-full overflow-hidden shrink-0 relative">
+                                  <BrainBuddyAvatar variant={theme.id} className="w-full h-full" showBorder={false} />
+                                </div>
+                                <span className="text-[11px] font-semibold text-white/90 truncate w-full text-center leading-tight">
+                                  {theme.name.split(' ')[1] || theme.name}
+                                </span>
+                                {isSelected && (
+                                  <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-[#00D68F] flex items-center justify-center shadow-md">
+                                    <Check className="w-3.5 h-3.5 text-[#06080c]" strokeWidth={3} />
+                                  </div>
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Upload Personal Photo */}
+                      <div>
+                        <span className="text-xs font-semibold text-blue-400 uppercase tracking-wider block mb-3">Or Upload Custom Photo</span>
+                        <div className="grid grid-cols-2 gap-3">
+                          <button
+                            onClick={() => {
+                              setIsPhotoOptionsOpen(false);
+                              cameraInputRef.current?.click();
+                            }}
+                            className="flex items-center justify-center gap-3 py-3.5 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-white font-medium text-sm"
+                          >
+                            <Camera className="w-5 h-5 text-blue-400" />
+                            Take Photo
+                          </button>
+                          
+                          <button
+                            onClick={() => {
+                              setIsPhotoOptionsOpen(false);
+                              galleryInputRef.current?.click();
+                            }}
+                            className="flex items-center justify-center gap-3 py-3.5 px-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-white font-medium text-sm"
+                          >
+                            <Images className="w-5 h-5 text-purple-400" />
+                            From Gallery
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </motion.div>
                 </motion.div>
               )}
@@ -4442,11 +4511,7 @@ export default function App() {
                     <div className="p-6 overflow-y-auto max-h-[70vh]">
                       <div className="flex items-center gap-4 mb-8">
                         <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center overflow-hidden border-2 border-blue-500/50">
-                          {profilePhoto ? (
-                            <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover" />
-                          ) : (
-                            <span className="text-2xl font-bold text-blue-400">{profileName ? profileName.charAt(0).toUpperCase() : 'U'}</span>
-                          )}
+                          <UserAvatar src={profilePhoto} name={profileName} className="w-full h-full" />
                         </div>
                         <div>
                           <h3 className="text-lg font-bold text-white">{profileName || 'User'}</h3>
@@ -4879,42 +4944,62 @@ export default function App() {
 
           </div>
 
-          {/* Bottom Navigation Mock */}
-          <div className="absolute bottom-0 left-0 right-0 h-20 bg-[#0a0a0c]/90 backdrop-blur-md border-t border-white/5 flex justify-around items-center px-6 z-20">
+          {/* Bottom Navigation */}
+          <div className="absolute bottom-0 left-0 right-0 h-20 bg-[#0a0a0c]/90 backdrop-blur-md border-t border-white/5 flex justify-around items-center px-4 z-20">
             <button 
               onClick={() => setCurrentTab('home')}
-              className={`flex flex-col items-center gap-1 transition-colors ${currentTab === 'home' ? 'text-white' : 'text-white/40 hover:text-white'}`}
+              className={`flex flex-col items-center justify-center gap-1 px-3 py-1.5 rounded-2xl transition-all duration-200 cursor-pointer ${
+                currentTab === 'home' 
+                  ? 'text-blue-500 bg-blue-500/10 border border-blue-500/30 shadow-[0_0_16px_rgba(59,130,246,0.25)]' 
+                  : 'text-white/40 hover:text-white border border-transparent'
+              }`}
             >
-              <Home className="w-6 h-6" />
-              <span className="text-[10px] font-medium">{t('home', language)}</span>
+              <Home className={`w-6 h-6 transition-all duration-200 ${currentTab === 'home' ? 'text-blue-500 drop-shadow-[0_0_10px_rgba(59,130,246,0.85)]' : ''}`} />
+              <span className={`text-[10px] transition-colors ${currentTab === 'home' ? 'font-semibold text-blue-400' : 'font-medium'}`}>{t('home', language)}</span>
             </button>
             <button 
               onClick={() => setCurrentTab('games')}
-              className={`flex flex-col items-center gap-1 transition-colors ${currentTab === 'games' ? 'text-white' : 'text-white/40 hover:text-white'}`}
+              className={`flex flex-col items-center justify-center gap-1 px-3 py-1.5 rounded-2xl transition-all duration-200 cursor-pointer ${
+                currentTab === 'games' 
+                  ? 'text-blue-500 bg-blue-500/10 border border-blue-500/30 shadow-[0_0_16px_rgba(59,130,246,0.25)]' 
+                  : 'text-white/40 hover:text-white border border-transparent'
+              }`}
             >
-              <Gamepad2 className="w-6 h-6" />
-              <span className="text-[10px] font-medium">{t('games', language)}</span>
+              <Gamepad2 className={`w-6 h-6 transition-all duration-200 ${currentTab === 'games' ? 'text-blue-500 drop-shadow-[0_0_10px_rgba(59,130,246,0.85)]' : ''}`} />
+              <span className={`text-[10px] transition-colors ${currentTab === 'games' ? 'font-semibold text-blue-400' : 'font-medium'}`}>{t('games', language)}</span>
             </button>
             <button 
-              onClick={() => setCurrentTab('coach')}
-              className={`flex flex-col items-center gap-1 transition-colors ${currentTab === 'coach' ? 'text-white' : 'text-white/40 hover:text-white'}`}
+              onClick={() => setCurrentTab('challenges')}
+              className={`flex flex-col items-center justify-center gap-1 px-3 py-1.5 rounded-2xl transition-all duration-200 cursor-pointer ${
+                currentTab === 'challenges' 
+                  ? 'text-blue-500 bg-blue-500/10 border border-blue-500/30 shadow-[0_0_16px_rgba(59,130,246,0.25)]' 
+                  : 'text-white/40 hover:text-white border border-transparent'
+              }`}
             >
-              <Sparkles className="w-6 h-6" />
-              <span className="text-[10px] font-medium">AI Coach</span>
+              <ChallengesIcon className={`w-6 h-6 transition-all duration-200 ${currentTab === 'challenges' ? 'text-blue-500 drop-shadow-[0_0_10px_rgba(59,130,246,0.85)]' : ''}`} />
+              <span className={`text-[10px] transition-colors ${currentTab === 'challenges' ? 'font-semibold text-blue-400' : 'font-medium'}`}>{t('challenges', language) || 'Challenges'}</span>
             </button>
             <button 
               onClick={() => setCurrentTab('stats')}
-              className={`flex flex-col items-center gap-1 transition-colors ${currentTab === 'stats' ? 'text-white' : 'text-white/40 hover:text-white'}`}
+              className={`flex flex-col items-center justify-center gap-1 px-3 py-1.5 rounded-2xl transition-all duration-200 cursor-pointer ${
+                currentTab === 'stats' 
+                  ? 'text-blue-500 bg-blue-500/10 border border-blue-500/30 shadow-[0_0_16px_rgba(59,130,246,0.25)]' 
+                  : 'text-white/40 hover:text-white border border-transparent'
+              }`}
             >
-              <TrendingUp className="w-6 h-6" />
-              <span className="text-[10px] font-medium">{t('stats', language)}</span>
+              <TrendingUp className={`w-6 h-6 transition-all duration-200 ${currentTab === 'stats' ? 'text-blue-500 drop-shadow-[0_0_10px_rgba(59,130,246,0.85)]' : ''}`} />
+              <span className={`text-[10px] transition-colors ${currentTab === 'stats' ? 'font-semibold text-blue-400' : 'font-medium'}`}>{t('stats', language)}</span>
             </button>
             <button 
               onClick={() => setCurrentTab('profile')}
-              className={`flex flex-col items-center gap-1 transition-colors ${currentTab === 'profile' ? 'text-white' : 'text-white/40 hover:text-white'}`}
+              className={`flex flex-col items-center justify-center gap-1 px-3 py-1.5 rounded-2xl transition-all duration-200 cursor-pointer ${
+                currentTab === 'profile' 
+                  ? 'text-blue-500 bg-blue-500/10 border border-blue-500/30 shadow-[0_0_16px_rgba(59,130,246,0.25)]' 
+                  : 'text-white/40 hover:text-white border border-transparent'
+              }`}
             >
-              <User className="w-6 h-6" />
-              <span className="text-[10px] font-medium">{t('profile', language)}</span>
+              <User className={`w-6 h-6 transition-all duration-200 ${currentTab === 'profile' ? 'text-blue-500 drop-shadow-[0_0_10px_rgba(59,130,246,0.85)]' : ''}`} />
+              <span className={`text-[10px] transition-colors ${currentTab === 'profile' ? 'font-semibold text-blue-400' : 'font-medium'}`}>{t('profile', language)}</span>
             </button>
           </div>
           </>
