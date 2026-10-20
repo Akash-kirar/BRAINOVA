@@ -1674,33 +1674,33 @@ export default function App() {
             <>
               {/* Main Content Area */}
               <div className="flex-1 overflow-y-auto hide-scrollbar pb-24 relative">
-                {/* Global Header Actions */}
+                {/* Global Header Actions (Mobile-Optimized Clean Stats Pills) */}
                 {currentTab !== 'profile' && (
-                  <div className="px-6 pt-12 pb-2 flex justify-between items-center sticky top-0 bg-[#0a0a0c]/90 backdrop-blur-md z-30">
-                    <div className="flex justify-between items-center w-full">
+                  <div className="px-5 pt-12 pb-2 sticky top-0 bg-[#07090e]/95 backdrop-blur-md z-30 border-b border-white/[0.04]">
+                    <div className="flex justify-between items-center w-full max-w-md mx-auto">
                       <button 
                         onClick={() => setIsTrainingHistoryOpen(true)}
-                        className="flex items-center gap-2 bg-[#1a120b] border-[1.5px] border-[#cc5500] px-3 py-1 rounded-full hover:bg-[#2a1b12] transition-colors cursor-pointer"
+                        className="flex items-center gap-2 bg-[#1a120b] border border-[#cc5500]/60 px-3.5 py-1.5 rounded-full hover:bg-[#2a1b12] transition-colors cursor-pointer shadow-sm active:scale-95"
+                        title="Daily Streak"
                       >
                         <Flame className="w-4 h-4 text-[#ff7a00]" strokeWidth={2.5} />
-                        <span className="text-white font-bold text-base">{stats.dailyStreak}</span>
+                        <span className="text-white font-bold text-sm">{stats.dailyStreak}</span>
                       </button>
                       <button 
                         onClick={() => setIsLpiModalOpen(true)}
-                        className="flex items-center gap-2 bg-[#c084fc]/10 border border-[#c084fc]/30 px-3 py-1.5 rounded-full hover:bg-[#c084fc]/20 transition-colors cursor-pointer"
+                        className="flex items-center gap-2 bg-[#c084fc]/10 border border-[#c084fc]/30 px-3.5 py-1.5 rounded-full hover:bg-[#c084fc]/20 transition-colors cursor-pointer shadow-sm active:scale-95"
+                        title="Brain Tokens"
                       >
-                        <div className="flex items-center justify-center">
-                          <img src="/logo.png" alt="Brainova" className="w-4 h-4 brightness-0" style={{ filter: 'invert(64%) sepia(51%) saturate(2371%) hue-rotate(227deg) brightness(101%) contrast(97%)' }} onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling?.classList.remove('hidden') }} />
-                          <Brain className="w-4 h-4 text-[#c084fc] hidden" />
-                        </div>
-                        <span className="text-[#c084fc] font-bold text-[15px]">{stats.novaCoins || 0}</span>
+                        <Brain className="w-4 h-4 text-[#c084fc]" />
+                        <span className="text-[#c084fc] font-bold text-sm">{stats.novaCoins || 0}</span>
                       </button>
                       <button 
                         onClick={() => setIsXpRoadmapOpen(true)}
-                        className="flex items-center gap-2 bg-[#3b82f6]/10 border border-[#3b82f6]/30 px-3 py-1.5 rounded-full hover:bg-[#3b82f6]/20 transition-colors cursor-pointer"
+                        className="flex items-center gap-2 bg-[#3b82f6]/10 border border-[#3b82f6]/30 px-3.5 py-1.5 rounded-full hover:bg-[#3b82f6]/20 transition-colors cursor-pointer shadow-sm active:scale-95"
+                        title="XP Progress"
                       >
                         <div className="w-4 h-4 bg-[#3b82f6] rounded-full flex items-center justify-center">
-                          <span className="text-white font-bold text-[8px]">XP</span>
+                          <span className="text-white font-black text-[8px]">XP</span>
                         </div>
                         <span className="text-[#3b82f6] font-bold text-sm">{totalXP}</span>
                       </button>
@@ -1942,6 +1942,14 @@ export default function App() {
                   onBack={() => setCurrentTab('home')} 
                   onPlay={handlePlayGame} 
                   sessions={sessions}
+                  stats={stats}
+                  totalXP={totalXP}
+                  onOpenCategories={() => setCurrentTab('games')}
+                  onOpenAchievements={() => {
+                    setProfileTab('achievements');
+                    setCurrentTab('profile');
+                  }}
+                  onOpenPremium={() => setIsAdminPanelOpen(true)}
                 />
               </motion.div>
             )}
@@ -4970,14 +4978,14 @@ export default function App() {
             </button>
             <button 
               onClick={() => setCurrentTab('challenges')}
-              className={`flex flex-col items-center justify-center gap-1 px-3 py-1.5 rounded-2xl transition-all duration-200 cursor-pointer ${
+              className={`flex flex-col items-center justify-center gap-1 px-3.5 py-1.5 rounded-[18px] transition-all duration-200 cursor-pointer ${
                 currentTab === 'challenges' 
-                  ? 'text-blue-500 bg-blue-500/10 border border-blue-500/30 shadow-[0_0_16px_rgba(59,130,246,0.25)]' 
+                  ? 'text-blue-400 bg-[#0b1730]/95 border border-[#3b82f6]/50 shadow-[0_0_18px_rgba(59,130,246,0.35)]' 
                   : 'text-white/40 hover:text-white border border-transparent'
               }`}
             >
-              <ChallengesIcon className={`w-6 h-6 transition-all duration-200 ${currentTab === 'challenges' ? 'text-blue-500 drop-shadow-[0_0_10px_rgba(59,130,246,0.85)]' : ''}`} />
-              <span className={`text-[10px] transition-colors ${currentTab === 'challenges' ? 'font-semibold text-blue-400' : 'font-medium'}`}>{t('challenges', language) || 'Challenges'}</span>
+              <ChallengesIcon className={`w-6 h-6 transition-all duration-200 ${currentTab === 'challenges' ? 'text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.9)]' : ''}`} />
+              <span className={`text-[10px] tracking-wide transition-colors ${currentTab === 'challenges' ? 'font-bold text-blue-400' : 'font-medium'}`}>{t('challenges', language) || 'Challenges'}</span>
             </button>
             <button 
               onClick={() => setCurrentTab('stats')}
