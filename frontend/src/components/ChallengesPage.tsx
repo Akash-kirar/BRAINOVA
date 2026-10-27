@@ -858,7 +858,7 @@ export function ChallengesPage({
   // =========================================================================
   if (subView === 'all-recommended') {
     return (
-      <div className="min-h-screen bg-[#07090e] text-white overflow-y-auto pb-28">
+      <div className="bg-[#07090e] text-white">
         <div className="max-w-md mx-auto px-4 pt-4 sm:px-6">
           {/* Header */}
           <div className="flex items-center mb-4 relative">
@@ -996,7 +996,7 @@ export function ChallengesPage({
   // =========================================================================
   if (subView === 'focus-plan') {
     return (
-      <div className="min-h-screen bg-[#07090e] text-white overflow-y-auto pb-28">
+      <div className="bg-[#07090e] text-white">
         <div className="max-w-md mx-auto px-4 pt-4 sm:px-6">
           {/* Header */}
           <div className="flex items-center mb-5 relative">
@@ -1228,7 +1228,7 @@ export function ChallengesPage({
   // MAIN VIEW: CHALLENGES HUB (Mobile-First Layout)
   // =========================================================================
   return (
-    <div className="min-h-screen bg-[#07090e] text-white overflow-y-auto pb-28 select-none">
+    <div className="bg-[#07090e] text-white select-none">
       <div className="max-w-md mx-auto px-4 pt-3 sm:px-6 sm:pt-4">
 
         {/* 1. Page Title Header & Concentric Target Logo */}
@@ -1734,7 +1734,7 @@ export function ChallengesPage({
         </div>
 
         {/* 8. NEW: 15 Sliding Challenges Deck (Image 1 Style Carousel at Bottom) */}
-        <div className="mb-7">
+        <div className="mb-2">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
               <Zap className="w-4 h-4 text-[#00D68F]" />

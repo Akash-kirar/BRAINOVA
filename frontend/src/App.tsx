@@ -5,7 +5,7 @@ import { supabase } from '@/src/lib/supabase';
  */
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Brain, Cpu, Paintbrush, TrendingUp, TrendingDown, ChevronLeft, ChevronRight, ChevronDown, Sparkles, Mail, Lock, User, ArrowLeft, LogOut, Flame, Zap, Target, Activity, Play, Lightbulb, Calculator, Trophy, Star, Grid, RotateCcw, Box, Puzzle, Search, Clock, Type, Shuffle, BookOpen, ListOrdered, Link, Check, CheckCircle, Copy, Bot, Home, Gamepad2, Sparkle, Settings, FileText, Shield, HelpCircle, Download, Trash2, MessageSquare, Sliders, Globe, X, Mic, Send, CircleDollarSign, Heart, Flag, Moon, Crown, Compass, Camera, Images, Edit2, Instagram, Gift, CreditCard, Building, Wallet, Smartphone, Award, MoreVertical, Bell, Gem, Dumbbell, Calendar, Rocket, Sword, Sun, Hexagon, Octagon, Diamond, Triangle, Infinity as InfinityIcon, Orbit, Atom, Filter, RefreshCcw, ScanFace, Cuboid, Route, Layers, Palette, Smile, Brush, Shapes } from 'lucide-react';
+import { Brain, Cpu, Paintbrush, TrendingUp, TrendingDown, ChevronLeft, ChevronRight, ChevronDown, Sparkles, Mail, Lock, User, ArrowLeft, LogOut, Flame, Zap, Target, Activity, Play, Lightbulb, Calculator, Trophy, Star, Grid, RotateCcw, Box, Puzzle, Search, Clock, Type, Shuffle, BookOpen, ListOrdered, Link, Check, CheckCircle, Copy, Bot, Home, Gamepad2, Sparkle, Settings, FileText, Shield, ShieldAlert, Eye, HelpCircle, Download, Trash2, MessageSquare, Sliders, Globe, X, Mic, Send, CircleDollarSign, Heart, Flag, Moon, Crown, Compass, Camera, Images, Edit2, Instagram, Gift, CreditCard, Building, Wallet, Smartphone, Award, MoreVertical, Bell, Gem, Dumbbell, Calendar, Rocket, Sword, Sun, Hexagon, Octagon, Diamond, Triangle, Infinity as InfinityIcon, Orbit, Atom, Filter, RefreshCcw, ScanFace, Cuboid, Route, Layers, Palette, Smile, Brush, Shapes, Repeat, Hash, Split } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { AreaChart, Area, LineChart, Line, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 
@@ -109,6 +109,42 @@ import ColorMixerGame from '@/src/features/creativity/components/ColorMixerGame'
 import EmojiStoryGame from '@/src/features/creativity/components/EmojiStoryGame';
 import PixelArtGame from '@/src/features/creativity/components/PixelArtGame';
 import ShapeBuilderGame from '@/src/features/creativity/components/ShapeBuilderGame';
+import DeductionMasterGame from './components/DeductionMasterGame';
+import TruthOrTrapGame from './components/TruthOrTrapGame';
+import MissingNumberGame from './components/MissingNumberGame';
+import SpeedTapGame from './components/SpeedTapGame';
+import StopAtRightTimeGame from './components/StopAtRightTimeGame';
+import ColorFinderGame from './components/ColorFinderGame';
+import SynonymChallengeGame from './components/SynonymChallengeGame';
+import ShapeCountingGame from './components/ShapeCountingGame';
+import ShapeMatchingGame from './components/ShapeMatchingGame';
+import FindTheNumberGame from './components/FindTheNumberGame';
+import CountTheObjectsGame from './components/CountTheObjectsGame';
+import PriorityMasterGame from './components/PriorityMasterGame';
+import RuleSwitchGame from './components/RuleSwitchGame';
+import CompleteTheDrawingGame from './components/CompleteTheDrawingGame';
+import CreativeConnectionsGame from './components/CreativeConnectionsGame';
+import NumberSequenceGame from './components/NumberSequenceGame';
+import ShapeSequenceGame from './components/ShapeSequenceGame';
+import MatchstickPuzzleGame from './components/MatchstickPuzzleGame';
+import WaterSortGame from './components/WaterSortGame';
+import FastNumberComparisonGame from './components/FastNumberComparisonGame';
+import QuickSymbolMatchGame from './components/QuickSymbolMatchGame';
+import SortByCategoryGame from './components/SortByCategoryGame';
+import OppositeAnswerGame from './components/OppositeAnswerGame';
+import PathFinderGame from './components/PathFinderGame';
+import BoxPusherGame from './components/BoxPusherGame';
+import BestChoiceGame from './components/BestChoiceGame';
+import RiskOrRewardGame from './components/RiskOrRewardGame';
+import NumberAndColorGame from './components/NumberAndColorGame';
+import DualTargetGame from './components/DualTargetGame';
+import MiniSudokuGame from './components/MiniSudokuGame';
+import NumberGridGame from './components/NumberGridGame';
+import SimpleMazeGame from './components/SimpleMazeGame';
+import FollowThePathGame from './components/FollowThePathGame';
+import KnowledgeQuizGame from './components/KnowledgeQuizGame';
+import TrueOrFalseGame from './components/TrueOrFalseGame';
+
 
 const mapNodesBase = [
   { id: 25, title: 'Infinite', xp: '106000', maxXP: '1000000', x: 240, y: 150, icon: Atom, color: '#f43f5e', labelColor: '#fb7185', labelPos: 'left' },
@@ -154,6 +190,8 @@ export const GAME_CATEGORIES_20 = [
   'Language & Vocabulary',
   'Visual & Spatial',
   'Observation',
+  'Executive Function',
+  'Creativity',
   'Pattern Recognition',
   'Problem Solving',
   'Working Memory',
@@ -161,16 +199,17 @@ export const GAME_CATEGORIES_20 = [
   'Cognitive Flexibility',
   'Planning & Strategy',
   'Decision Making',
-  'Creativity',
-  'Auditory Memory',
   'Multitasking',
   'Sudoku & Grid Puzzles',
-  'Mazes & Navigation'
+  'Mazes & Navigation',
+  'Trivia & General Knowledge',
+  'Auditory Memory'
 ] as const;
 
 export const allGames = [
   { id: 'memory-grid', title: 'Memory Grid', category: 'Memory', description: 'Remember highlighted squares', icon: <Brain className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
   { id: 'card-match', title: 'Card Match', category: 'Memory', description: 'Match identical cards', icon: <Sparkles className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
+  { id: 'flip-and-match', title: 'Flip & Match', category: 'Memory', description: 'Flip cards and match all pairs', icon: <Sparkles className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
   { id: 'sequence-recall', title: 'Sequence Recall', category: 'Working Memory', description: 'Remember number sequence', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20', isPremium: true },
   { id: 'pattern-recall', title: 'Pattern Recall', category: 'Pattern Recognition', description: 'Remember shapes pattern', icon: <Zap className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20', isPremium: true },
   { id: 'image-memory', title: 'Image Memory', category: 'Memory', description: 'Remember pictures', icon: <Lightbulb className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
@@ -190,6 +229,8 @@ export const allGames = [
   { id: 'memory-flip', title: 'Memory Flip Challenge', category: 'Memory', description: 'Flip and remember', icon: <Sparkles className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20' },
   { id: 'speed-memory', title: 'Speed Memory Challenge', category: 'Processing Speed', description: 'Fast-paced memory', icon: <Zap className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20', isPremium: true },
   // Focus & Attention Games
+  { id: 'target-tap', title: 'Target Tap', category: 'Focus & Attention', description: 'Find and tap the target shape quickly', icon: <Target className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
+  { id: 'color-finder', title: 'Color Finder', category: 'Focus & Attention', description: 'Quickly select the matching target color', icon: <Eye className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
   { id: 'find-different-shape', title: 'Find the Different Shape', category: 'Focus & Attention', description: 'Spot the unique shape', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
   { id: 'odd-one-out', title: 'Odd One Out', category: 'Focus & Attention', description: 'Find the odd item out', icon: <Lightbulb className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
   { id: 'focus-tap', title: 'Focus Tap', category: 'Focus & Attention', description: 'Tap target quickly', icon: <Zap className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
@@ -211,6 +252,9 @@ export const allGames = [
   { id: 'shape-count', title: 'Shape Count', category: 'Observation', description: 'Count specific shapes', icon: <Box className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
   { id: 'color-anomaly', title: 'Color Anomaly', category: 'Observation', description: 'Spot the odd color', icon: <Sparkle className="w-8 h-8 text-sky-400" />, color: 'bg-sky-500/10', border: 'border-sky-500/20', isPremium: true },
   // Logic & Puzzle Games
+  { id: 'deduction-master', title: 'The Deduction Master', category: 'Logic', description: 'Solve complex mystery grids with deductive logic', icon: <Brain className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+  { id: 'truth-or-trap', title: 'Truth or Trap', category: 'Logic', description: 'Unmask liars, find contradictions & deduce valid truths', icon: <ShieldAlert className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
+  { id: 'complete-the-pattern', title: 'Complete the Pattern', category: 'Logic', description: 'Find the missing pattern element', icon: <Puzzle className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
   { id: 'sudoku-lite', title: 'Sudoku Lite', category: 'Sudoku & Grid Puzzles', description: 'Mini 4x4 Sudoku', icon: <Grid className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20', isPremium: true },
   { id: 'pattern-logic', title: 'Pattern Logic', category: 'Logic', description: 'Find the next pattern', icon: <Brain className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
   { id: 'sequence-logic', title: 'Sequence Logic', category: 'Logic', description: 'Find the next number', icon: <Calculator className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
@@ -233,6 +277,7 @@ export const allGames = [
   { id: 'logic-path', title: 'Logic Path', category: 'Mazes & Navigation', description: 'Find the logical path', icon: <Target className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
   
   // Math & Calculation Games
+  { id: 'quick-calculation', title: 'Quick Calculation', category: 'Math', description: 'Solve arithmetic questions before time runs out', icon: <Calculator className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
   { id: 'quick-addition', title: 'Quick Addition', category: 'Math', description: 'Fast addition problems', icon: <Calculator className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
   { id: 'fast-subtraction', title: 'Fast Subtraction', category: 'Math', description: 'Quick subtraction', icon: <Calculator className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
   { id: 'multiplication-sprint', title: 'Multiplication Sprint', category: 'Math', description: 'Speed multiplication', icon: <Calculator className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20', isPremium: true },
@@ -248,6 +293,8 @@ export const allGames = [
   { id: 'calculation-memory', title: 'Calculation Memory', category: 'Math', description: 'Remember calculations', icon: <Brain className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
   { id: 'math-duel', title: 'Math Duel', category: 'Math', description: 'Duel with math', icon: <Target className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20', isPremium: true },
   // Reaction Speed Games
+  { id: 'speed-tap', title: 'Speed Tap', category: 'Reaction Speed', description: 'Measure reaction speed in milliseconds', icon: <Zap className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
+  { id: 'stop-at-the-right-time', title: 'Stop at the Right Time', category: 'Reaction Speed', description: 'Stop the timer precisely at the target second', icon: <Clock className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
   { id: 'reaction-tap', title: 'Reaction Tap', category: 'Reaction Speed', description: 'Tap when green', icon: <Zap className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20', isPremium: true },
   { id: 'color-reaction', title: 'Color Reaction', category: 'Reaction Speed', description: 'Match color and word', icon: <Activity className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20', isPremium: true },
   { id: 'tap-the-target', title: 'Tap the Target', category: 'Reaction Speed', description: 'Tap targets quickly', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
@@ -309,6 +356,65 @@ export const allGames = [
   { id: 'risk-assessment', title: 'Risk Assessment', category: 'Decision Making', description: 'Weigh odds under pressure', icon: <Target className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
   { id: 'strategy-quest', title: 'Strategy Quest', category: 'Planning & Strategy', description: 'Think three steps ahead', icon: <Route className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
   { id: 'set-shifter', title: 'Set Shifter', category: 'Cognitive Flexibility', description: 'Adapt to rapid rule shifts', icon: <Filter className="w-8 h-8 text-violet-400" />, color: 'bg-violet-500/10', border: 'border-violet-500/20' },
+
+  // Section 6: Language & Vocabulary
+  { id: 'synonym-challenge', title: 'Synonym Challenge', category: 'Language & Vocabulary', description: 'Select words with the closest meaning', icon: <BookOpen className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
+
+  // Section 7: Visual & Spatial
+  { id: 'shape-counting', title: 'Shape Counting', category: 'Visual & Spatial', description: 'Quickly count target shapes scattered in the scene', icon: <Shapes className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+  { id: 'shape-matching', title: 'Shape Matching', category: 'Visual & Spatial', description: 'Identify rotated and scaled identical shapes', icon: <Box className="w-8 h-8 text-teal-400" />, color: 'bg-teal-500/10', border: 'border-teal-500/20' },
+
+  // Section 8: Observation
+  { id: 'find-the-number', title: 'Find the Number', category: 'Observation', description: 'Scan the randomized grid to spot the target number', icon: <Search className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+  { id: 'count-the-objects', title: 'Count the Objects', category: 'Observation', description: 'Accurately count randomly scattered objects', icon: <Target className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
+
+  // Section 9: Executive Function
+  { id: 'priority-master', title: 'Priority Master', category: 'Executive Function', description: 'Identify which critical action must be completed first', icon: <Compass className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+  { id: 'rule-switch', title: 'Rule Switch', category: 'Executive Function', description: 'Follow sorting rules and adapt when rules abruptly change', icon: <Repeat className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
+
+  // Section 10: Creativity
+  { id: 'complete-the-drawing', title: 'Complete the Drawing', category: 'Creativity', description: 'Select the missing geometric piece to complete the drawing', icon: <Palette className="w-8 h-8 text-pink-400" />, color: 'bg-pink-500/10', border: 'border-pink-500/20' },
+  { id: 'creative-connections', title: 'Creative Connections', category: 'Creativity', description: 'Find the remote associate word connecting three clues', icon: <Lightbulb className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
+
+  // Section 11: Pattern Recognition
+  { id: 'number-sequence', title: 'Number Sequence', category: 'Pattern Recognition', description: 'Deduce the missing number in arithmetic and geometric patterns', icon: <Hash className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
+  { id: 'shape-sequence', title: 'Shape Sequence', category: 'Pattern Recognition', description: 'Identify the transformation rule and pick the missing shape', icon: <Shapes className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
+
+  // Section 12: Problem Solving
+  { id: 'matchstick-puzzle', title: 'Matchstick Puzzle', category: 'Problem Solving', description: 'Move 1 matchstick to correct arithmetic equations', icon: <Sparkles className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
+  { id: 'water-sort', title: 'Water Sort Puzzle', category: 'Problem Solving', description: 'Sort colored liquid layers into dedicated test tubes', icon: <Activity className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+
+  // Section 13: Processing Speed
+  { id: 'fast-number-comparison', title: 'Fast Number Comparison', category: 'Processing Speed', description: 'Rapidly compare two values and tap the larger quantity', icon: <Zap className="w-8 h-8 text-yellow-400" />, color: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
+  { id: 'quick-symbol-match', title: 'Quick Symbol Match', category: 'Processing Speed', description: 'Match target symbols with speed and precision', icon: <Target className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+
+  // Section 14: Cognitive Flexibility
+  { id: 'sort-by-category', title: 'Sort by Category', category: 'Cognitive Flexibility', description: 'Classify items under changing categorization rules', icon: <Split className="w-8 h-8 text-teal-400" />, color: 'bg-teal-500/10', border: 'border-teal-500/20' },
+  { id: 'opposite-answer', title: 'Opposite Answer', category: 'Cognitive Flexibility', description: 'Overcome automatic bias and choose the opposite response', icon: <RotateCcw className="w-8 h-8 text-rose-400" />, color: 'bg-rose-500/10', border: 'border-rose-500/20' },
+
+  // Section 15: Planning & Strategy
+  { id: 'path-finder', title: 'Path Finder', category: 'Planning & Strategy', description: 'Plan the optimal route around obstacles to the goal', icon: <Compass className="w-8 h-8 text-blue-400" />, color: 'bg-blue-500/10', border: 'border-blue-500/20' },
+  { id: 'box-pusher', title: 'Box Pusher', category: 'Planning & Strategy', description: 'Sokoban puzzle: push all crates onto target storage tiles', icon: <Box className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
+
+  // Section 16: Decision Making
+  { id: 'best-choice', title: 'Best Choice', category: 'Decision Making', description: 'Analyze everyday situations and select the optimal decision', icon: <CheckCircle className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+  { id: 'risk-or-reward', title: 'Risk or Reward', category: 'Decision Making', description: 'Balance guaranteed rewards against volatile higher yields', icon: <Flame className="w-8 h-8 text-orange-400" />, color: 'bg-orange-500/10', border: 'border-orange-500/20' },
+
+  // Section 17: Multitasking
+  { id: 'number-and-color', title: 'Number & Color', category: 'Multitasking', description: 'Alternate focus between numerical parity and display color', icon: <Layers className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
+  { id: 'dual-target', title: 'Dual Target', category: 'Multitasking', description: 'Simultaneously locate two distinct target criteria', icon: <Target className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+
+  // Section 18: Sudoku & Grid Puzzles
+  { id: 'mini-sudoku', title: 'Mini Sudoku', category: 'Sudoku & Grid Puzzles', description: 'Solve 4x4 Sudoku logic grids with numbers 1 to 4', icon: <Grid className="w-8 h-8 text-purple-400" />, color: 'bg-purple-500/10', border: 'border-purple-500/20' },
+  { id: 'number-grid', title: 'Number Grid', category: 'Sudoku & Grid Puzzles', description: 'Deduce missing numbers following row and column rules', icon: <Grid className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+
+  // Section 19: Mazes & Navigation
+  { id: 'simple-maze', title: 'Simple Maze', category: 'Mazes & Navigation', description: 'Navigate through labyrinth corridors to the exit flag', icon: <Route className="w-8 h-8 text-emerald-400" />, color: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+  { id: 'follow-the-path', title: 'Follow the Path', category: 'Mazes & Navigation', description: 'Memorize briefly highlighted paths and retrace them', icon: <Compass className="w-8 h-8 text-amber-400" />, color: 'bg-amber-500/10', border: 'border-amber-500/20' },
+
+  // Section 20: Trivia & General Knowledge
+  { id: 'knowledge-quiz', title: 'Knowledge Quiz', category: 'Trivia & General Knowledge', description: 'Test knowledge in science, geography, tech, and history', icon: <BookOpen className="w-8 h-8 text-indigo-400" />, color: 'bg-indigo-500/10', border: 'border-indigo-500/20' },
+  { id: 'true-or-false', title: 'True or False', category: 'Trivia & General Knowledge', description: 'Verify factual claims across multiple disciplines', icon: <CheckCircle className="w-8 h-8 text-cyan-400" />, color: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
 ];
 
 const gameCategories = [
@@ -1255,6 +1361,59 @@ export default function App() {
               onBack={handleBackFromGame} 
               onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'memory', score, difficulty: 'normal', maxLevel })}
             />
+          ) : activeGame === 'deduction-master' ? (
+            <DeductionMasterGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'logic', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'truth-or-trap' ? (
+            <TruthOrTrapGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'logic', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'missing-number' ? (
+            <MissingNumberGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'math', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'speed-tap' ? (
+            <SpeedTapGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'speed', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'stop-at-the-right-time' || activeGame === 'stop-right-time' ? (
+            <StopAtRightTimeGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'speed', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'color-finder' ? (
+            <ColorFinderGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'focus', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'target-tap' ? (
+            <FocusTapGame difficulty={gameDifficulty}  
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'focus', score, difficulty: 'normal', maxLevel })}
+            />
+          ) : activeGame === 'flip-and-match' ? (
+            <CardMatchGame difficulty={gameDifficulty}  
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'memory', score, difficulty: 'normal', maxLevel })}
+            />
+          ) : activeGame === 'complete-the-pattern' ? (
+            <PatternLogicGame difficulty={gameDifficulty}  
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'logic', score, difficulty: 'normal', maxLevel })}
+            />
+          ) : activeGame === 'quick-calculation' ? (
+            <MathSprintGame difficulty={gameDifficulty}  
+              operation="mixed"
+              title="Quick Calculation"
+              description="Solve arithmetic questions before time runs out."
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'math', score, difficulty: 'normal', maxLevel })}
+            />
           ) : activeGame === 'odd-one-out' ? (
             <OddOneOutGame difficulty={gameDifficulty}  
               onBack={handleBackFromGame} 
@@ -1652,7 +1811,154 @@ export default function App() {
               onBack={handleBackFromGame} 
               onTrainingComplete={(score) => handleGameCompleteWrapper({ gameType: 'speed', score, difficulty: 'normal' })}
             />
-          ) : activeGame === 'daily-training' ? (
+          
+          
+          ) : activeGame === 'synonym-challenge' ? (
+            <SynonymChallengeGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'language', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'shape-counting' ? (
+            <ShapeCountingGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'visual', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'shape-matching' ? (
+            <ShapeMatchingGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'visual', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'find-the-number' ? (
+            <FindTheNumberGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'observation', score, difficulty: 'normal', maxLevel })}
+            />
+          ) : activeGame === 'count-the-objects' ? (
+            <CountTheObjectsGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'observation', score, difficulty: 'normal', maxLevel })}
+            />
+          ) : activeGame === 'priority-master' ? (
+            <PriorityMasterGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'executive', score, difficulty: 'normal', maxLevel })}
+            />
+          ) : activeGame === 'rule-switch' ? (
+            <RuleSwitchGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'executive', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'complete-the-drawing' ? (
+            <CompleteTheDrawingGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'creativity', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'creative-connections' ? (
+            <CreativeConnectionsGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'creativity', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'number-sequence' ? (
+            <NumberSequenceGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'logic', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'shape-sequence' ? (
+            <ShapeSequenceGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'logic', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'matchstick-puzzle' ? (
+            <MatchstickPuzzleGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'logic', score, difficulty: 'normal', maxLevel })}
+            />
+          ) : activeGame === 'water-sort' ? (
+            <WaterSortGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'logic', score, difficulty: 'normal', maxLevel })}
+            />
+          ) : activeGame === 'fast-number-comparison' ? (
+            <FastNumberComparisonGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'speed', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'quick-symbol-match' ? (
+            <QuickSymbolMatchGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'speed', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'sort-by-category' ? (
+            <SortByCategoryGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'executive', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'opposite-answer' ? (
+            <OppositeAnswerGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'executive', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'path-finder' ? (
+            <PathFinderGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'executive', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'box-pusher' ? (
+            <BoxPusherGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'executive', score, difficulty: 'normal', maxLevel })}
+            />
+          ) : activeGame === 'best-choice' ? (
+            <BestChoiceGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'executive', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'risk-or-reward' ? (
+            <RiskOrRewardGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'executive', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'number-and-color' ? (
+            <NumberAndColorGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'speed', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'dual-target' ? (
+            <DualTargetGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel, accuracy) => handleGameCompleteWrapper({ gameType: 'focus', score, difficulty: 'normal', maxLevel, accuracy })}
+            />
+          ) : activeGame === 'mini-sudoku' ? (
+            <MiniSudokuGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'logic', score, difficulty: 'normal', maxLevel })}
+            />
+          ) : activeGame === 'number-grid' ? (
+            <NumberGridGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'logic', score, difficulty: 'normal', maxLevel })}
+            />
+          ) : activeGame === 'simple-maze' ? (
+            <SimpleMazeGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'visual', score, difficulty: 'normal', maxLevel })}
+            />
+          ) : activeGame === 'follow-the-path' ? (
+            <FollowThePathGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'visual', score, difficulty: 'normal', maxLevel })}
+            />
+          ) : activeGame === 'knowledge-quiz' ? (
+            <KnowledgeQuizGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'language', score, difficulty: 'normal', maxLevel })}
+            />
+          ) : activeGame === 'true-or-false' ? (
+            <TrueOrFalseGame 
+              onBack={handleBackFromGame} 
+              onGameComplete={(score, maxLevel) => handleGameCompleteWrapper({ gameType: 'language', score, difficulty: 'normal', maxLevel })}
+            />
+) : activeGame === 'daily-training' ? (
             <DailyTraining 
               onBack={handleBackFromGame} 
             />

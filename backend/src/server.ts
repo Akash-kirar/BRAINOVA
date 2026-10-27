@@ -74,6 +74,83 @@ async function startServer() {
     }
   });
 
+  // Secure Game Verification Endpoints
+  app.post("/api/games/verify-deduction", (req, res) => {
+    const { puzzleId, assignments, timeTaken, hintsUsed } = req.body || {};
+    
+    // Server-side answer key validation
+    const solutions: Record<string, Record<string, string>> = {
+      easy_championship: { Alex: '1st', Ben: '2nd', Clara: '3rd', David: '4th' },
+      med_safehouse: { 'Agent Fox': 'London', 'Agent Ghost': 'Tokyo', 'Agent Raven': 'Reykjavik', 'Agent Viper': 'Berlin' },
+      hard_gallery: { Kaelen: 'Vault', Mira: 'Observatory', Lyra: 'Atrium', Dorian: 'Archive', Soren: 'Armory' },
+      expert_quantum: { 'Dr. Aris': '2021', 'Dr. Blair': '2022', 'Dr. Chen': '2023', 'Dr. Diaz': '2024', 'Dr. Evans': '2025' },
+      master_embassy: { 'Delegate Ramos': 'Level 1', 'Consul Moreau': 'Level 2', 'Attache Novak': 'Level 3', 'Envoy Chen': 'Level 4', 'Ambassador Thorne': 'Level 5', 'Minister Vance': 'Level 6' }
+    };
+
+    const targetSolution = solutions[puzzleId];
+    if (!targetSolution) {
+      return res.status(404).json({ valid: false, error: "Puzzle not found" });
+    }
+
+    let isCorrect = true;
+    for (const [char, expected] of Object.entries(targetSolution)) {
+      if (assignments?.[char] !== expected) {
+        isCorrect = false;
+        break;
+      }
+    }
+
+    if (!isCorrect) {
+      return res.json({ valid: false, message: "Deduction contains contradictions" });
+    }
+
+    const basePoints: Record<string, number> = {
+      easy_championship: 100,
+      med_safehouse: 160,
+      hard_gallery: 240,
+      expert_quantum: 350,
+      master_embassy: 500
+    };
+
+    const base = basePoints[puzzleId] || 100;
+    const timeBonus = Math.max(0, Math.floor((300 - Math.min(300, Number(timeTaken || 100))) * 0.5));
+    const hintPenalty = Math.min(base * 0.5, Number(hintsUsed || 0) * 25);
+    const verifiedScore = Math.max(50, Math.round(base + timeBonus - hintPenalty));
+
+    return res.json({
+      valid: true,
+      verifiedScore,
+      earnedCoins: Math.max(10, Math.floor(verifiedScore / 5)),
+      signature: crypto.createHmac("sha256", "brainova_game_secret").update(`${puzzleId}:${verifiedScore}`).digest("hex")
+    });
+  });
+
+  app.post("/api/games/verify-truth", (req, res) => {
+    const { scenarioId, selectedOption } = req.body || {};
+    const truthKey: Record<string, string> = {
+      wil_easy: "Marcus",
+      wil_med: "Jax & Dane",
+      tc_hard: "A: Knight, B: Knave, C: Knight",
+      ch_med: "Statement 2 & 4 & 5",
+      lv_hard: "Dr. Aris is not a certified neural engineer.",
+      mi_expert: "Vance: Truth, Lyra: Lie, Kael: Lie, Mira: Truth, Soren: Lie"
+    };
+
+    const expected = truthKey[scenarioId];
+    if (!expected) {
+      return res.status(404).json({ valid: false, error: "Scenario not found" });
+    }
+
+    const valid = selectedOption === expected;
+    const score = valid ? 150 : 0;
+
+    return res.json({
+      valid,
+      verifiedScore: score,
+      earnedCoins: valid ? 30 : 0
+    });
+  });
+
   const razorpay = hasRazorpayKeys
     ? new Razorpay({
         key_id: process.env.RAZORPAY_KEY_ID!,
