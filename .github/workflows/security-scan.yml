@@ -1,15 +1,16 @@
+```yaml
 name: Brainova Security Scan
 
 on:
   push:
-    branches: [main]
-    paths:
-      - "frontend/**"
-      - "backend/**"
-      - ".github/workflows/security-scan.yml"
+    branches:
+      - main
+      - release
 
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - release
 
   schedule:
     - cron: "30 3 * * 1"
@@ -18,6 +19,10 @@ on:
 
 permissions:
   contents: read
+
+concurrency:
+  group: security-scan-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   security-audit:
@@ -48,8 +53,9 @@ jobs:
           node-version: "22"
           package-manager-cache: false
 
-      - name: Install Dependencies
+      - name: Validate Lockfile and Install Dependencies
         run: npm ci
 
-      - name: Audit Dependencies
+      - name: NPM Security Audit
         run: npm audit --audit-level=high
+```
