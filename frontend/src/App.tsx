@@ -144,6 +144,8 @@ import SimpleMazeGame from './components/SimpleMazeGame';
 import FollowThePathGame from './components/FollowThePathGame';
 import KnowledgeQuizGame from './components/KnowledgeQuizGame';
 import TrueOrFalseGame from './components/TrueOrFalseGame';
+import usePWAInstall from './hooks/usePWAInstall';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
 
 
 const mapNodesBase = [
@@ -466,6 +468,7 @@ const MOCK_NOTIFICATIONS = [
 ];
 
 export default function App() {
+  const pwa = usePWAInstall();
   const getGreeting = () => {
     const hour = new Date().getHours();
     if (hour < 12) return 'Good Morning';
@@ -2010,6 +2013,17 @@ export default function App() {
                         </div>
                         <span className="text-[#3b82f6] font-bold text-sm">{totalXP}</span>
                       </button>
+                      {pwa.isInstallable && !pwa.isInstalled && (
+                        <button 
+                          onClick={() => pwa.promptInstall()}
+                          className="flex items-center gap-1.5 bg-emerald-500/15 border border-emerald-500/40 px-3 py-1.5 rounded-full hover:bg-emerald-500/25 transition-all text-xs font-bold text-emerald-300 shadow-sm active:scale-95 cursor-pointer"
+                          title="Install Brainova App"
+                        >
+                          <Download className="w-3.5 h-3.5 text-emerald-400" />
+                          <span className="hidden sm:inline">Install App</span>
+                          <span className="sm:hidden">Install</span>
+                        </button>
+                      )}
                     </div>
                   </div>
                 )}
@@ -2979,6 +2993,23 @@ export default function App() {
                     <span className="font-medium">Rewards History</span>
                   </button>
 
+                                    <button 
+                    onClick={() => pwa.promptInstall()}
+                    className="w-full flex items-center justify-between text-left px-4 py-4 text-base text-white bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/30 hover:border-emerald-500/50 hover:bg-emerald-500/20 transition-all duration-300 rounded-xl group cursor-pointer shadow-sm mb-3"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+                        <Download className="w-5 h-5 text-emerald-400 group-hover:scale-110 transition-transform" />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-white block">Install Brainova App</span>
+                        <span className="text-xs text-white/50 block">Offline training & home screen access</span>
+                      </div>
+                    </div>
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      {pwa.isInstalled ? 'Installed' : 'Install PWA'}
+                    </span>
+                  </button>
                   <button 
                     onClick={() => setIsAccountOpen(true)}
                     className="w-full flex items-center gap-4 text-left px-4 py-4 text-base text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 rounded-xl"
@@ -5319,7 +5350,19 @@ export default function App() {
           </>
           )}
         </div>
-      </GameContext.Provider>
+      
+            {/* PWA Installation Prompt, Banner & Offline Banner */}
+            <PWAInstallPrompt
+              isInstallable={pwa.isInstallable}
+              isInstalled={pwa.isInstalled}
+              isIOS={pwa.isIOS}
+              isOnline={pwa.isOnline}
+              showInstallModal={pwa.showInstallModal}
+              setShowInstallModal={pwa.setShowInstallModal}
+              installedRecently={pwa.installedRecently}
+              onInstall={pwa.promptInstall}
+            />
+</GameContext.Provider>
     );
   }
 
@@ -5333,11 +5376,23 @@ export default function App() {
 
   if (isCompleted) {
     return (
-      <AuthScreen 
-        language={language} 
-        onLogin={(name) => { if(name) setProfileName(name); setOnboardingStep(1); }} 
-        onBack={() => setIsCompleted(false)} 
-      />
+      <>
+        <AuthScreen 
+          language={language} 
+          onLogin={(name) => { if(name) setProfileName(name); setOnboardingStep(1); }} 
+          onBack={() => setIsCompleted(false)} 
+        />
+        <PWAInstallPrompt
+          isInstallable={pwa.isInstallable}
+          isInstalled={pwa.isInstalled}
+          isIOS={pwa.isIOS}
+          isOnline={pwa.isOnline}
+          showInstallModal={pwa.showInstallModal}
+          setShowInstallModal={pwa.setShowInstallModal}
+          installedRecently={pwa.installedRecently}
+          onInstall={pwa.promptInstall}
+        />
+      </>
     );
   }
 
