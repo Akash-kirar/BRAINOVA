@@ -1,4 +1,3 @@
-```yaml
 name: Brainova Security Scan
 
 on:
@@ -53,9 +52,8 @@ jobs:
           node-version: "22"
           package-manager-cache: false
 
-      - name: Validate Lockfile and Install Dependencies
+      - name: Install Dependencies
         run: npm ci
 
-      - name: NPM Security Audit
+      - name: Audit Dependencies
         run: npm audit --audit-level=high
-```
